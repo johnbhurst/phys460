@@ -3,6 +3,10 @@
 # John Hurst (john.b.hurst@gmail.com)
 # 2024-07-06
 
+# This script demonstrates a simple Hamming(7,4) code.  It encodes a 4-bit input into a 7-bit codeword and decodes a
+# 7-bit codeword into a 4-bit output.  It also demonstrates error correction by flipping a single bit in the codeword
+# and decoding it.
+
 # See Paul Nahin, "The Logician and the Engineer", Princeton University Press, 2013, p. 132.
 
 
