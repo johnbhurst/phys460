@@ -1,0 +1,90 @@
+\documentclass[12pt]{extarticle}
+\usepackage{phys460}
+
+\title{PHYS460 - Homework 1}
+\author{John Hurst}
+\date{July 2024}
+
+\hyphenation{trans-pi-la-tion}
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We have discussed the circuit representation of quantum operations $\calE(\rho)$ acting on system states $\rho$.
+See Figure~\ref{fig:system_in_environment}.
+The essence was that a quantum operation has the general form
+\begin{equation}\label{eq:quantum_operation}
+\calE(\rho) = \sum_k E_k \rho E_k^\dagger,
+\end{equation}
+with operation elements $E_k$ related to the unitary transformation $U$ via $E_k = \matrixelement{e_k}{U}{e_0}$.
+Here the $\ket{E-k}$ form an orthonormal basis in the environment's ket space,
+which needs to be large enough to accommodate all of the $E_k$.
+Note that the latter are not numbers,
+but operators acting in the system Hilbert space!
+The output state of the combined system + environment after $U$ is then
+\begin{equation}\label{eq:output_state}
+U[\rho\otimes\outerproduct{e_0}{e_0}]U^\dagger = \sum_{kk'} E_k \rho E_{k'}^\dagger \otimes \outerproduct{e_k}{e_{k'}},
+\end{equation}
+and a measurement of the environment in the $\{\ket{e_k}\}$ basis results in the system to be in the state $\calE(\rho)$ given in Eq.~\eqref{eq:quantum_operation}.
+
+\begin{figure}[h]
+\centering
+$\begin{array}{c}
+\Qcircuit @C=.5em @R=.8em {
+\lstick{\rho} & \multigate{1}{U} & \rstick{\calE(\rho)} \qw  \\
+\lstick{\ket{e_0}} & \ghost{U} & \qw & \meter \qw
+}
+\end{array}$
+\caption{}
+\label{fig:system_in_environment}
+\end{figure}
+
+\textbf{Example 1.} Consider the quantum-operation circuit shown in Figure~\ref{fig:system_Ry} below.
+
+\begin{figure}[h]
+\centering
+$\begin{array}{c}
+\Qcircuit @C=.5em @R=.8em {
+\lstick{\rho} & \ctrl{1} & \rstick{\calE(\rho)} \qw  \\
+\lstick{\ket{e_0}} & \gate{R_y(\theta)} & \qw & \meter \qw
+}
+\end{array}$
+\caption{}
+\label{fig:system_Ry}
+\end{figure}
+
+Here both system and environment are a single qubit.
+Find the unitary matrix $U$ and, from that, determine the operation elements $E_0$ and $E_1$ so that you have
+$\calE(\rho) = E_0 \rho E_0^\dagger + E_1 \rho E_1^\dagger$.
+Apply the quantum operation $\calE(\rho)$ to the general form of the system density matrix,
+\begin{equation}\label{eq:rho_general}
+    \rho = \begin{pmatrix}a & b \\ c & d\end{pmatrix}.
+\end{equation}
+Describe the effect that the operation has on the system state.
+
+\textbf{Example 2.} Now consider the quantum-operation circuit depicted in Figure~\ref{fig:system_rho_Z}.
+
+\begin{figure}[h]
+\centering
+$\begin{array}{c}
+\Qcircuit @C=.5em @R=.8em {
+\lstick{\rho} & \gate{Z} & \rstick{\calE(\rho)} \qw  \\
+\lstick{\begin{pmatrix}p & 0 \\ 0 & 1-p\end{pmatrix}} & \ctrl{-1} & \qw & \meter \qw
+}
+\end{array}$
+\caption{}
+\label{fig:system_rho_Z}
+\end{figure}
+
+Here the environment qubit starts out in a mixed state, but the situation is still straighforward to anslyse.
+Find $\calE(\rho)$ and determine the effect of this operation on the general system state from Eq.~\eqref{eq:rho_general}.
+Compare with the operation considered in Example 1 above.
+
+\textbf{Physical interpretation.} The quantum operations considered in Examples 1 and 2 above represent phase damping,
+which is a particular noise source for qubits.
+Briefly discuss its specifics.
+
+% \printbibliography
+% \addcontentsline{toc}{section}{References}
+
+\end{document}
