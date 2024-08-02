@@ -17,7 +17,7 @@ The essence was that a quantum operation has the general form
 \calE(\rho) = \sum_k E_k \rho E_k^\dagger,
 \end{equation}
 with operation elements $E_k$ related to the unitary transformation $U$ via $E_k = \matrixelement{e_k}{U}{e_0}$.
-Here the $\ket{E-k}$ form an orthonormal basis in the environment's ket space,
+Here the $\ket{e_k}$ form an orthonormal basis in the environment's ket space,
 which needs to be large enough to accommodate all of the $E_k$.
 Note that the latter are not numbers,
 but operators acting in the system Hilbert space!
@@ -39,7 +39,8 @@ $\begin{array}{c}
 \label{fig:system_in_environment}
 \end{figure}
 
-\textbf{Example 1.} Consider the quantum-operation circuit shown in Figure~\ref{fig:system_Ry} below.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\question{Example 1}{Consider the quantum-operation circuit shown in Figure~\ref{fig:system_Ry} below.
 
 \begin{figure}[h]
 \centering
@@ -55,14 +56,28 @@ $\begin{array}{c}
 
 Here both system and environment are a single qubit.
 Find the unitary matrix $U$ and, from that, determine the operation elements $E_0$ and $E_1$ so that you have
-$\calE(\rho) = E_0 \rho E_0^\dagger + E_1 \rho E_1^\dagger$.
+$\calE(\rho) = E_0 \rho {E_0}^\dagger + E_1 \rho {E_1}^\dagger$.
 Apply the quantum operation $\calE(\rho)$ to the general form of the system density matrix,
 \begin{equation}\label{eq:rho_general}
     \rho = \begin{pmatrix}a & b \\ c & d\end{pmatrix}.
 \end{equation}
 Describe the effect that the operation has on the system state.
+}
 
-\textbf{Example 2.} Now consider the quantum-operation circuit depicted in Figure~\ref{fig:system_rho_Z}.
+The unitary matrix $U$ for this example is given by
+\begin{align*}
+U & = \outerproduct{0}{0}\otimes I + \outerproduct{1}{1}\otimes R_y(\theta) \\
+& = \begin{pmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & \cos\frac{\theta}{2} & -\sin\frac{\theta}{2} \\
+    0 & 0 & \sin\frac{\theta}{2} & \cos\frac{\theta}{2}
+\end{pmatrix}.
+\end{align*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\question{Example 2}{Now consider the quantum-operation circuit depicted in Figure~\ref{fig:system_rho_Z}.
 
 \begin{figure}[h]
 \centering
@@ -76,14 +91,14 @@ $\begin{array}{c}
 \label{fig:system_rho_Z}
 \end{figure}
 
-Here the environment qubit starts out in a mixed state, but the situation is still straighforward to anslyse.
+Here the environment qubit starts out in a mixed state, but the situation is still straighforward to analyse.
 Find $\calE(\rho)$ and determine the effect of this operation on the general system state from Eq.~\eqref{eq:rho_general}.
 Compare with the operation considered in Example 1 above.
 
 \textbf{Physical interpretation.} The quantum operations considered in Examples 1 and 2 above represent phase damping,
 which is a particular noise source for qubits.
 Briefly discuss its specifics.
-
+}
 % \printbibliography
 % \addcontentsline{toc}{section}{References}
 
