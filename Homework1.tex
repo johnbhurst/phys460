@@ -75,6 +75,45 @@ U & = \outerproduct{0}{0}\otimes I + \outerproduct{1}{1}\otimes R_y(\theta) \\
 \end{pmatrix}.
 \end{align*}
 
+To determine the operation elements (Kraus operators) $E_0$ and $E_1$,
+I'll follow Nielsen and Chuang\cite{nielsen2016} page p.363,
+and use their notation, specifically using $\ket{0_P},\ket{1_P}$ for the principal system basis, and $\ket{0_E},\ket{1_E}$ for the environment basis.
+\begin{align*}
+U & = \outerproduct{0_P}{0_P} \otimes I + \outerproduct{1_P}{1_P} \otimes R_y(\theta) \\
+& = \outerproduct{0_P}{0_P} \otimes \outerproduct{0_E}{0_E} + \outerproduct{0_P}{0_P} \otimes \outerproduct{1_E}{1_E} \\
+& \qquad + \outerproduct{1_P}{1_P} \left[ \cos\frac{\theta}{2} \outerproduct{0_E}{0_E} - \sin\frac{\theta}{2} \outerproduct{0_E}{1_E} + \sin\frac{\theta}{2} \outerproduct{1_E}{0_E} + \cos\frac{\theta}{2} \outerproduct{1_E}{1_E} \right] \\
+E_0 & = \mel{0_E}{U}{0_E} = \outerproduct{0_P}{0_P} + \cos\frac{\theta}{2} \outerproduct{1_P}{1_P}
+= \begin{pmatrix}1 & 0 \\ 0 & \cos\frac{\theta}{2}\end{pmatrix}, \\
+E_1 & = \mel{1_E}{U}{0_E} = \sin\frac{\theta}{2} \outerproduct{1_P}{1_P}
+= \begin{pmatrix}0 & 0 \\ 0 & \sin\frac{\theta}{2}\end{pmatrix}.
+\end{align*}
+These matrices correspond to the phase damping example in Nielsen and Chuang page 384:
+\begin{align*}
+E_0 & = \begin{pmatrix}1 & 0 \\ 0 & \sqrt{1-\lambda}\end{pmatrix}, \\
+E_1 & = \begin{pmatrix}0 & 0 \\ 0 & \sqrt{\lambda}\end{pmatrix},
+\end{align*}
+where in their example $\lambda = 1 - \cos^2(\chi\Delta t)$ ``can be interpreted as the probability that a photon from the system has been scattered (without loss of energy).''
+
+Applying to the general form of the system density matrix:
+\begin{align*}
+\calE(\rho) & = E_0 \rho {E_0}^\dagger + E_1 \rho {E_1}^\dagger \\
+& = \begin{pmatrix}1 & 0 \\ 0 & \cos\frac{\theta}{2}\end{pmatrix} \begin{pmatrix}a & b \\ c & d\end{pmatrix} \begin{pmatrix}1 & 0 \\ 0 & \cos\frac{\theta}{2}\end{pmatrix}
++ \begin{pmatrix}0 & 0 \\ 0 & \sin\frac{\theta}{2}\end{pmatrix} \begin{pmatrix}a & b \\ c & d\end{pmatrix} \begin{pmatrix}0 & 0 \\ 0 & \sin\frac{\theta}{2}\end{pmatrix} \\
+& = \begin{pmatrix}a & b\cos\frac{\theta}{2} \\ c\cos\frac{\theta}{2} & d\cos^2\frac{\theta}{2}\end{pmatrix} + \begin{pmatrix}0 & 0 \\ 0 & d\sin^2\frac{\theta}{2}\end{pmatrix} \\
+& = \begin{pmatrix}a & b\cos\frac{\theta}{2} \\ c\cos\frac{\theta}{2} & d\end{pmatrix}.
+\end{align*}
+This result agrees with the formula given in Lee, Ji \& Chen\cite{lee2024} for general phase damping:
+\[
+\calN_{\text{dephase}}(\rho) = (1-s)\rho + s\text{diag}(\rho),
+\]
+where $s$ is the probability of noise and $\text{diag}(\rho)$ is the diagonal part of $\rho$.
+
+The dephasing process suppresses the off-diagonal elements of the density matrix, but does not effect the diagonal elements.
+
+As described in Nielsen and Chuang, the effect of this operation is to project a Bloch vector along the $z$ axis,
+losing the $x$ and $y$ components of the vector.
+
+Physically, the relative phase between the basis states $\ket{0}$ and $\ket{1}$ becomes randomised.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \question{Example 2}{Now consider the quantum-operation circuit depicted in Figure~\ref{fig:system_rho_Z}.
@@ -94,12 +133,48 @@ $\begin{array}{c}
 Here the environment qubit starts out in a mixed state, but the situation is still straighforward to analyse.
 Find $\calE(\rho)$ and determine the effect of this operation on the general system state from Eq.~\eqref{eq:rho_general}.
 Compare with the operation considered in Example 1 above.
+}
 
-\textbf{Physical interpretation.} The quantum operations considered in Examples 1 and 2 above represent phase damping,
+In this situation the environment is an ensemble of qubit states where a given qubit has a $p$ probability of being in the $\ket{0}$ state and a $1-p$ probability of being in the $\ket{1}$ state.
+
+When the environment qubit is in the $\ket{0}$ state, the principal system is unchanged.
+When the environment qubit is in the $\ket{1}$ state, the principal system has the $Z$ operation applied.
+
+We can describe this using the evolution of the density matrix:
+\begin{align*}
+\calE(\rho) & = p I \rho I + (1-p) Z \rho Z \\
+& = p \begin{pmatrix}a & b \\ c & d\end{pmatrix} + (1-p) \begin{pmatrix}a & -b \\ -c & d\end{pmatrix} \\
+& = \begin{pmatrix}a & (2p-1)b \\ (2p-1)c & d\end{pmatrix} \\
+\end{align*}
+
+This result is the same as in the previous question, with $\cos\frac{\theta}{2} = 2p-1$.
+
+\question{Physical interpretation}{The quantum operations considered in Examples 1 and 2 above represent phase damping,
 which is a particular noise source for qubits.
 Briefly discuss its specifics.
 }
-% \printbibliography
-% \addcontentsline{toc}{section}{References}
+
+According to Nielsen and Chuang, phase damping is a noise process that describes the loss of quantum information without loss of energy.
+They give the example of a photon scattering randomly as it travels through a waveguide,
+and another example of electronic states in an atom are perturbed upon interacting with distant electrical charges.
+
+Most interesting is the observation that continuous phase errors are equivalent to discrete phase flips, making practical quantum error correction possible (p. 385):
+
+\begin{displayquote}
+    Historically, phase damping was a process that was almost always thought of, physically,
+    as resulting from a random phase kick or scattering process. It was not until the
+    connection to the phase flip channel was discovered that quantum error-correction was
+    developed, since it was thought that phase errors were continuous and couldn't be described
+    as a discrete process! In fact, single qubit phase errors can always be thought of
+    as resulting from a process in which either nothing happens to a qubit, with probability
+    $\alpha$, or with probability $1-\alpha$, the qubit is flipped by the Z Pauli operation. Although this
+    might not be the actual microscopic physical process happening, from the standpoint of
+    the transformation occurring to a qubit over a discrete time interval large compared to
+    the underlying random process, there is no difference at all.
+\end{displayquote}
+
+
+\printbibliography
+\addcontentsline{toc}{section}{References}
 
 \end{document}
