@@ -11,4 +11,5 @@ __pycache__/
 *.run.xml
 *.synctex.gz
 *.toc
+images/qec_bitflip
 venv/
