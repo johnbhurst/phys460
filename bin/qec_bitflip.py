@@ -3,6 +3,8 @@
 # John Hurst (john.b.hurst@gmail.com)
 # 2024-08-16
 
+# See "Quantum Computing and Information: A Scaffolding Approach" by Peter Y Lee, Huiwen Ji, Ran Cheng, Polaris QCI, 2024
+
 import math
 from phys460 import get_parser, run_circuit
 from qiskit.circuit import  ClassicalRegister, QuantumCircuit, QuantumRegister
