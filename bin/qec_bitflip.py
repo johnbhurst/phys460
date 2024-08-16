@@ -20,9 +20,9 @@ def safe_eval(expr):
 theta = safe_eval(args.theta)
 q = [q1, q2, q3] = QuantumRegister(3, name='q')
 a = [a1, a2] = QuantumRegister(2, name='a')
-c = ClassicalRegister(3, name='c')
+o = ClassicalRegister(3, name='output')
 s = ClassicalRegister(2, name='syndrome')
-circuit = QuantumCircuit(q, a, c, s)
+circuit = QuantumCircuit(q, a, o, s)
 
 circuit.ry(theta, q1)
 circuit.cx(q1, q2)
@@ -42,16 +42,16 @@ circuit.mcx([a2, a1], q2, ctrl_state=0b10)
 circuit.mcx([a2, a1], q3, ctrl_state=0b01)
 circuit.cx(q1, q3)
 circuit.cx(q1, q2)
-circuit.measure(q, c)
+circuit.measure(q, o)
 circuit.measure(a, s)
 
 result = run_circuit(args, circuit)
-counts = result[0].data.c.get_counts()
 syndrome_counts = result[0].data.syndrome.get_counts()
 assert len(syndrome_counts) == 1
 syndrome = next(iter(syndrome_counts.keys()))
 print(f"{syndrome=}")
-for bits, val in sorted(counts.items()):
+output_counts = result[0].data.output.get_counts()
+for bits, val in sorted(output_counts.items()):
     assert bits[0:2] == "00"
     bit = bits[2]
     print(f"{bit}\t{val}")
