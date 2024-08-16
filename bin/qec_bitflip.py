@@ -3,22 +3,14 @@
 # John Hurst (john.b.hurst@gmail.com)
 # 2024-08-16
 
-import argparse
 import math
-from qiskit_aer import AerSimulator
-from qiskit.circuit import  AncillaRegister, ClassicalRegister, QuantumCircuit, QuantumRegister
-from qiskit_ibm_runtime import SamplerV2 as Sampler
-from qiskit_ibm_runtime.fake_provider import FakeProviderForBackendV2 as FakeProvider
-from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from phys460 import get_parser, run_circuit
+from qiskit.circuit import  ClassicalRegister, QuantumCircuit, QuantumRegister
 
-parser = argparse.ArgumentParser(description='Quantum Error Correction: Single bit flip correction.')
-parser.add_argument("--provider", type=str, default="aer", help="Provider (aer, fake_manila, fake_kyoto, etc), (default aer)")
-parser.add_argument("--shots", type=int, default=1024, help="Number of shots")
+parser = get_parser('Quantum Error Correction: Single bit flip correction.')
 parser.add_argument("--theta", type=str, default="0", help="RY rotation angle (e.g. 'pi/2')")
 parser.add_argument("--unitaryop", type=str, default="I", help="Unitary operation (I, X)")
 parser.add_argument("--flip", type=int, default=-1, help="Bit to flip: -1 (none), 0, 1, 2")
-parser.add_argument("--filename", type=str, help="Filename for circuit diagram")
-parser.add_argument("--isa-filename", type=str, help="Filename for circuit diagram after ISA")
 args = parser.parse_args()
 
 def safe_eval(expr):
@@ -53,24 +45,7 @@ circuit.cx(q1, q2)
 circuit.measure(q, c)
 circuit.measure(a, s)
 
-if args.filename:
-    circuit.draw(output="mpl", filename=args.filename)
-
-if args.provider == 'aer':
-    backend = AerSimulator()
-else:
-    backend = next(iter([backend for backend in FakeProvider().backends() if backend.name == args.provider]), None)
-
-sampler = Sampler(backend)
-
-pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
-isa_circuit = pm.run(circuit)
-
-if args.isa_filename:
-    isa_circuit.draw(output="mpl", filename=args.isa_filename)
-
-job = sampler.run([isa_circuit], shots=args.shots)
-result = job.result()
+result = run_circuit(args, circuit)
 counts = result[0].data.c.get_counts()
 syndrome_counts = result[0].data.syndrome.get_counts()
 assert len(syndrome_counts) == 1
