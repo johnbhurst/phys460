@@ -1,0 +1,80 @@
+Input state: |0>, I, no error
+syndrome='00'
+0	1024
+Input state: |0>, I, flip bit 0
+syndrome='11'
+0	1024
+Input state: |0>, I, flip bit 1
+syndrome='01'
+0	1024
+Input state: |0>, I, flip bit 2
+syndrome='10'
+0	1024
+Input state: |0>, X, no error
+syndrome='00'
+1	1024
+Input state: |0>, X, flip bit 0
+syndrome='11'
+1	1024
+Input state: |0>, X, flip bit 1
+syndrome='01'
+1	1024
+Input state: |0>, X, flip bit 2
+syndrome='10'
+1	1024
+Input state: |1>, I, no error
+syndrome='00'
+1	1024
+Input state: |1>, I, flip bit 0
+syndrome='11'
+1	1024
+Input state: |1>, I, flip bit 1
+syndrome='01'
+1	1024
+Input state: |1>, I, flip bit 2
+syndrome='10'
+1	1024
+Input state: |1>, X, no error
+syndrome='00'
+0	1024
+Input state: |1>, X, flip bit 0
+syndrome='11'
+0	1024
+Input state: |1>, X, flip bit 1
+syndrome='01'
+0	1024
+Input state: |1>, X, flip bit 2
+syndrome='10'
+0	1024
+Input state: |1:2>, I, no error
+syndrome='00'
+0	697
+1	327
+Input state: |1:2>, I, flip bit 0
+syndrome='11'
+0	688
+1	336
+Input state: |1:2>, I, flip bit 1
+syndrome='01'
+0	668
+1	356
+Input state: |1:2>, I, flip bit 2
+syndrome='10'
+0	688
+1	336
+Input state: |1:2>, X, no error
+syndrome='00'
+0	347
+1	677
+Input state: |1:2>, X, flip bit 0
+syndrome='11'
+0	336
+1	688
+Input state: |1:2>, X, flip bit 1
+syndrome='01'
+0	338
+1	686
+Input state: |1:2>, X, flip bit 2
+syndrome='10'
+0	355
+1	669

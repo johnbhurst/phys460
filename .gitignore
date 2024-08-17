@@ -12,4 +12,5 @@ __pycache__/
 *.synctex.gz
 *.toc
 images/qec_bitflip
+images/qec_phaseflip
 venv/
