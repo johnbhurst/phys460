@@ -26,7 +26,8 @@ o = ClassicalRegister(3, name='output')
 s = ClassicalRegister(2, name='syndrome')
 circuit = QuantumCircuit(q, a, o, s)
 
-circuit.ry(theta, q1)
+if theta != 0.0:
+    circuit.ry(theta, q1)
 circuit.cx(q1, q2)
 circuit.cx(q1, q3)
 if args.unitaryop == 'X':
