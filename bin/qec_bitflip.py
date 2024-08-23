@@ -16,7 +16,7 @@ parser.add_argument("--flip", type=int, default=-1, help="Bit to flip: -1 (none)
 args = parser.parse_args()
 
 def safe_eval(expr):
-    allowed_names = {"pi": math.pi}
+    allowed_names = {"pi": math.pi, "sqrt": math.sqrt, "atan": math.atan}
     return eval(expr, {"__builtins__": None}, allowed_names)
 
 theta = safe_eval(args.theta)
