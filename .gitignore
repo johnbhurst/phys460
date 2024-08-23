@@ -13,4 +13,5 @@ __pycache__/
 *.toc
 images/qec_bitflip
 images/qec_phaseflip
+images/qec_shor9bit
 venv/

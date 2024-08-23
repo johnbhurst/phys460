@@ -1,0 +1,1833 @@
+Input state: |0>, I, no error
+Syndromes:
+00000000	1000
+Output:
+0	1000
+
+Input state: |0>, I, flip bit 0
+Syndromes:
+00000011	1000
+Output:
+0	1000
+
+Input state: |0>, I, flip bit 1
+Syndromes:
+00000001	1000
+Output:
+0	1000
+
+Input state: |0>, I, flip bit 2
+Syndromes:
+00000010	1000
+Output:
+0	1000
+
+Input state: |0>, I, flip bit 3
+Syndromes:
+00001100	1000
+Output:
+0	1000
+
+Input state: |0>, I, flip bit 4
+Syndromes:
+00000100	1000
+Output:
+0	1000
+
+Input state: |0>, I, flip bit 5
+Syndromes:
+00001000	1000
+Output:
+0	1000
+
+Input state: |0>, I, flip bit 6
+Syndromes:
+00110000	1000
+Output:
+0	1000
+
+Input state: |0>, I, flip bit 7
+Syndromes:
+00010000	1000
+Output:
+0	1000
+
+Input state: |0>, I, flip bit 8
+Syndromes:
+00100000	1000
+Output:
+0	1000
+
+Input state: |0>, I, flip phase 0
+Syndromes:
+11000000	1000
+Output:
+0	1000
+
+Input state: |0>, I, flip phase 1
+Syndromes:
+11000000	1000
+Output:
+0	1000
+
+Input state: |0>, I, flip phase 2
+Syndromes:
+11000000	1000
+Output:
+0	1000
+
+Input state: |0>, I, flip phase 3
+Syndromes:
+01000000	1000
+Output:
+0	1000
+
+Input state: |0>, I, flip phase 4
+Syndromes:
+01000000	1000
+Output:
+0	1000
+
+Input state: |0>, I, flip phase 5
+Syndromes:
+01000000	1000
+Output:
+0	1000
+
+Input state: |0>, I, flip phase 6
+Syndromes:
+10000000	1000
+Output:
+0	1000
+
+Input state: |0>, I, flip phase 7
+Syndromes:
+10000000	1000
+Output:
+0	1000
+
+Input state: |0>, I, flip phase 8
+Syndromes:
+10000000	1000
+Output:
+0	1000
+
+Input state: |0>, I, random rotation on bit 0
+Syndromes:
+00000000	212
+00000011	85
+11000000	258
+11000011	445
+Output:
+0	1000
+
+Input state: |0>, I, random rotation on bit 1
+Syndromes:
+00000000	286
+00000001	647
+11000000	31
+11000001	36
+Output:
+0	1000
+
+Input state: |0>, I, random rotation on bit 2
+Syndromes:
+00000000	191
+00000010	3
+11000000	34
+11000010	772
+Output:
+0	1000
+
+Input state: |0>, I, random rotation on bit 3
+Syndromes:
+00000000	70
+00001100	29
+01000000	62
+01001100	839
+Output:
+0	1000
+
+Input state: |0>, I, random rotation on bit 4
+Syndromes:
+00000000	577
+00000100	136
+01000000	110
+01000100	177
+Output:
+0	1000
+
+Input state: |0>, I, random rotation on bit 5
+Syndromes:
+00000000	93
+00001000	849
+01000000	17
+01001000	41
+Output:
+0	1000
+
+Input state: |0>, I, random rotation on bit 6
+Syndromes:
+00000000	160
+00110000	356
+10000000	37
+10110000	447
+Output:
+0	1000
+
+Input state: |0>, I, random rotation on bit 7
+Syndromes:
+00000000	8
+00010000	952
+10000000	23
+10010000	17
+Output:
+0	1000
+
+Input state: |0>, I, random rotation on bit 8
+Syndromes:
+00000000	65
+00100000	316
+10000000	382
+10100000	237
+Output:
+0	1000
+
+Input state: |0>, X, no error
+Syndromes:
+00000000	1000
+Output:
+1	1000
+
+Input state: |0>, X, flip bit 0
+Syndromes:
+00000011	1000
+Output:
+1	1000
+
+Input state: |0>, X, flip bit 1
+Syndromes:
+00000001	1000
+Output:
+1	1000
+
+Input state: |0>, X, flip bit 2
+Syndromes:
+00000010	1000
+Output:
+1	1000
+
+Input state: |0>, X, flip bit 3
+Syndromes:
+00001100	1000
+Output:
+1	1000
+
+Input state: |0>, X, flip bit 4
+Syndromes:
+00000100	1000
+Output:
+1	1000
+
+Input state: |0>, X, flip bit 5
+Syndromes:
+00001000	1000
+Output:
+1	1000
+
+Input state: |0>, X, flip bit 6
+Syndromes:
+00110000	1000
+Output:
+1	1000
+
+Input state: |0>, X, flip bit 7
+Syndromes:
+00010000	1000
+Output:
+1	1000
+
+Input state: |0>, X, flip bit 8
+Syndromes:
+00100000	1000
+Output:
+1	1000
+
+Input state: |0>, X, flip phase 0
+Syndromes:
+11000000	1000
+Output:
+1	1000
+
+Input state: |0>, X, flip phase 1
+Syndromes:
+11000000	1000
+Output:
+1	1000
+
+Input state: |0>, X, flip phase 2
+Syndromes:
+11000000	1000
+Output:
+1	1000
+
+Input state: |0>, X, flip phase 3
+Syndromes:
+01000000	1000
+Output:
+1	1000
+
+Input state: |0>, X, flip phase 4
+Syndromes:
+01000000	1000
+Output:
+1	1000
+
+Input state: |0>, X, flip phase 5
+Syndromes:
+01000000	1000
+Output:
+1	1000
+
+Input state: |0>, X, flip phase 6
+Syndromes:
+10000000	1000
+Output:
+1	1000
+
+Input state: |0>, X, flip phase 7
+Syndromes:
+10000000	1000
+Output:
+1	1000
+
+Input state: |0>, X, flip phase 8
+Syndromes:
+10000000	1000
+Output:
+1	1000
+
+Input state: |0>, X, random rotation on bit 0
+Syndromes:
+00000000	190
+00000011	195
+11000000	497
+11000011	118
+Output:
+1	1000
+
+Input state: |0>, X, random rotation on bit 1
+Syndromes:
+00000000	198
+00000001	521
+11000000	278
+11000001	3
+Output:
+1	1000
+
+Input state: |0>, X, random rotation on bit 2
+Syndromes:
+00000000	10
+00000010	286
+11000000	116
+11000010	588
+Output:
+1	1000
+
+Input state: |0>, X, random rotation on bit 3
+Syndromes:
+00000000	568
+00001100	37
+01000000	218
+01001100	177
+Output:
+1	1000
+
+Input state: |0>, X, random rotation on bit 4
+Syndromes:
+00000000	112
+00000100	529
+01000000	230
+01000100	129
+Output:
+1	1000
+
+Input state: |0>, X, random rotation on bit 5
+Syndromes:
+00000000	210
+00001000	505
+01000000	94
+01001000	191
+Output:
+1	1000
+
+Input state: |0>, X, random rotation on bit 6
+Syndromes:
+00000000	11
+00110000	7
+10000000	892
+10110000	90
+Output:
+1	1000
+
+Input state: |0>, X, random rotation on bit 7
+Syndromes:
+00000000	372
+00010000	454
+10000000	64
+10010000	110
+Output:
+1	1000
+
+Input state: |0>, X, random rotation on bit 8
+Syndromes:
+00000000	361
+00100000	358
+10000000	166
+10100000	115
+Output:
+1	1000
+
+Input state: |0>, Z, no error
+Syndromes:
+00000000	1000
+Output:
+0	1000
+
+Input state: |0>, Z, flip bit 0
+Syndromes:
+00000011	1000
+Output:
+0	1000
+
+Input state: |0>, Z, flip bit 1
+Syndromes:
+00000001	1000
+Output:
+0	1000
+
+Input state: |0>, Z, flip bit 2
+Syndromes:
+00000010	1000
+Output:
+0	1000
+
+Input state: |0>, Z, flip bit 3
+Syndromes:
+00001100	1000
+Output:
+0	1000
+
+Input state: |0>, Z, flip bit 4
+Syndromes:
+00000100	1000
+Output:
+0	1000
+
+Input state: |0>, Z, flip bit 5
+Syndromes:
+00001000	1000
+Output:
+0	1000
+
+Input state: |0>, Z, flip bit 6
+Syndromes:
+00110000	1000
+Output:
+0	1000
+
+Input state: |0>, Z, flip bit 7
+Syndromes:
+00010000	1000
+Output:
+0	1000
+
+Input state: |0>, Z, flip bit 8
+Syndromes:
+00100000	1000
+Output:
+0	1000
+
+Input state: |0>, Z, flip phase 0
+Syndromes:
+11000000	1000
+Output:
+0	1000
+
+Input state: |0>, Z, flip phase 1
+Syndromes:
+11000000	1000
+Output:
+0	1000
+
+Input state: |0>, Z, flip phase 2
+Syndromes:
+11000000	1000
+Output:
+0	1000
+
+Input state: |0>, Z, flip phase 3
+Syndromes:
+01000000	1000
+Output:
+0	1000
+
+Input state: |0>, Z, flip phase 4
+Syndromes:
+01000000	1000
+Output:
+0	1000
+
+Input state: |0>, Z, flip phase 5
+Syndromes:
+01000000	1000
+Output:
+0	1000
+
+Input state: |0>, Z, flip phase 6
+Syndromes:
+10000000	1000
+Output:
+0	1000
+
+Input state: |0>, Z, flip phase 7
+Syndromes:
+10000000	1000
+Output:
+0	1000
+
+Input state: |0>, Z, flip phase 8
+Syndromes:
+10000000	1000
+Output:
+0	1000
+
+Input state: |0>, Z, random rotation on bit 0
+Syndromes:
+00000000	123
+00000011	419
+11000000	22
+11000011	436
+Output:
+0	1000
+
+Input state: |0>, Z, random rotation on bit 1
+Syndromes:
+00000000	704
+00000001	162
+11000000	5
+11000001	129
+Output:
+0	1000
+
+Input state: |0>, Z, random rotation on bit 2
+Syndromes:
+00000000	542
+00000010	14
+11000000	161
+11000010	283
+Output:
+0	1000
+
+Input state: |0>, Z, random rotation on bit 3
+Syndromes:
+00000000	92
+00001100	255
+01000000	261
+01001100	392
+Output:
+0	1000
+
+Input state: |0>, Z, random rotation on bit 4
+Syndromes:
+00000000	277
+00000100	432
+01000000	79
+01000100	212
+Output:
+0	1000
+
+Input state: |0>, Z, random rotation on bit 5
+Syndromes:
+00000000	370
+00001000	459
+01000000	60
+01001000	111
+Output:
+0	1000
+
+Input state: |0>, Z, random rotation on bit 6
+Syndromes:
+00000000	144
+00110000	823
+10000000	22
+10110000	11
+Output:
+0	1000
+
+Input state: |0>, Z, random rotation on bit 7
+Syndromes:
+00000000	8
+00010000	6
+10000000	986
+Output:
+0	1000
+
+Input state: |0>, Z, random rotation on bit 8
+Syndromes:
+00000000	33
+00100000	563
+10000000	8
+10100000	396
+Output:
+0	1000
+
+Input state: |1>, I, no error
+Syndromes:
+00000000	1000
+Output:
+1	1000
+
+Input state: |1>, I, flip bit 0
+Syndromes:
+00000011	1000
+Output:
+1	1000
+
+Input state: |1>, I, flip bit 1
+Syndromes:
+00000001	1000
+Output:
+1	1000
+
+Input state: |1>, I, flip bit 2
+Syndromes:
+00000010	1000
+Output:
+1	1000
+
+Input state: |1>, I, flip bit 3
+Syndromes:
+00001100	1000
+Output:
+1	1000
+
+Input state: |1>, I, flip bit 4
+Syndromes:
+00000100	1000
+Output:
+1	1000
+
+Input state: |1>, I, flip bit 5
+Syndromes:
+00001000	1000
+Output:
+1	1000
+
+Input state: |1>, I, flip bit 6
+Syndromes:
+00110000	1000
+Output:
+1	1000
+
+Input state: |1>, I, flip bit 7
+Syndromes:
+00010000	1000
+Output:
+1	1000
+
+Input state: |1>, I, flip bit 8
+Syndromes:
+00100000	1000
+Output:
+1	1000
+
+Input state: |1>, I, flip phase 0
+Syndromes:
+11000000	1000
+Output:
+1	1000
+
+Input state: |1>, I, flip phase 1
+Syndromes:
+11000000	1000
+Output:
+1	1000
+
+Input state: |1>, I, flip phase 2
+Syndromes:
+11000000	1000
+Output:
+1	1000
+
+Input state: |1>, I, flip phase 3
+Syndromes:
+01000000	1000
+Output:
+1	1000
+
+Input state: |1>, I, flip phase 4
+Syndromes:
+01000000	1000
+Output:
+1	1000
+
+Input state: |1>, I, flip phase 5
+Syndromes:
+01000000	1000
+Output:
+1	1000
+
+Input state: |1>, I, flip phase 6
+Syndromes:
+10000000	1000
+Output:
+1	1000
+
+Input state: |1>, I, flip phase 7
+Syndromes:
+10000000	1000
+Output:
+1	1000
+
+Input state: |1>, I, flip phase 8
+Syndromes:
+10000000	1000
+Output:
+1	1000
+
+Input state: |1>, I, random rotation on bit 0
+Syndromes:
+00000000	389
+00000011	3
+11000000	11
+11000011	597
+Output:
+1	1000
+
+Input state: |1>, I, random rotation on bit 1
+Syndromes:
+00000000	831
+00000001	115
+11000000	8
+11000001	46
+Output:
+1	1000
+
+Input state: |1>, I, random rotation on bit 2
+Syndromes:
+00000000	265
+00000010	269
+11000000	374
+11000010	92
+Output:
+1	1000
+
+Input state: |1>, I, random rotation on bit 3
+Syndromes:
+00000000	14
+00001100	279
+01000000	197
+01001100	510
+Output:
+1	1000
+
+Input state: |1>, I, random rotation on bit 4
+Syndromes:
+00000000	27
+00000100	629
+01000000	280
+01000100	64
+Output:
+1	1000
+
+Input state: |1>, I, random rotation on bit 5
+Syndromes:
+00000000	54
+00001000	252
+01000000	451
+01001000	243
+Output:
+1	1000
+
+Input state: |1>, I, random rotation on bit 6
+Syndromes:
+00000000	57
+00110000	6
+10000000	415
+10110000	522
+Output:
+1	1000
+
+Input state: |1>, I, random rotation on bit 7
+Syndromes:
+00000000	410
+00010000	259
+10000000	8
+10010000	323
+Output:
+1	1000
+
+Input state: |1>, I, random rotation on bit 8
+Syndromes:
+00000000	198
+00100000	27
+10000000	157
+10100000	618
+Output:
+1	1000
+
+Input state: |1>, X, no error
+Syndromes:
+00000000	1000
+Output:
+0	1000
+
+Input state: |1>, X, flip bit 0
+Syndromes:
+00000011	1000
+Output:
+0	1000
+
+Input state: |1>, X, flip bit 1
+Syndromes:
+00000001	1000
+Output:
+0	1000
+
+Input state: |1>, X, flip bit 2
+Syndromes:
+00000010	1000
+Output:
+0	1000
+
+Input state: |1>, X, flip bit 3
+Syndromes:
+00001100	1000
+Output:
+0	1000
+
+Input state: |1>, X, flip bit 4
+Syndromes:
+00000100	1000
+Output:
+0	1000
+
+Input state: |1>, X, flip bit 5
+Syndromes:
+00001000	1000
+Output:
+0	1000
+
+Input state: |1>, X, flip bit 6
+Syndromes:
+00110000	1000
+Output:
+0	1000
+
+Input state: |1>, X, flip bit 7
+Syndromes:
+00010000	1000
+Output:
+0	1000
+
+Input state: |1>, X, flip bit 8
+Syndromes:
+00100000	1000
+Output:
+0	1000
+
+Input state: |1>, X, flip phase 0
+Syndromes:
+11000000	1000
+Output:
+0	1000
+
+Input state: |1>, X, flip phase 1
+Syndromes:
+11000000	1000
+Output:
+0	1000
+
+Input state: |1>, X, flip phase 2
+Syndromes:
+11000000	1000
+Output:
+0	1000
+
+Input state: |1>, X, flip phase 3
+Syndromes:
+01000000	1000
+Output:
+0	1000
+
+Input state: |1>, X, flip phase 4
+Syndromes:
+01000000	1000
+Output:
+0	1000
+
+Input state: |1>, X, flip phase 5
+Syndromes:
+01000000	1000
+Output:
+0	1000
+
+Input state: |1>, X, flip phase 6
+Syndromes:
+10000000	1000
+Output:
+0	1000
+
+Input state: |1>, X, flip phase 7
+Syndromes:
+10000000	1000
+Output:
+0	1000
+
+Input state: |1>, X, flip phase 8
+Syndromes:
+10000000	1000
+Output:
+0	1000
+
+Input state: |1>, X, random rotation on bit 0
+Syndromes:
+00000000	1
+00000011	925
+11000000	8
+11000011	66
+Output:
+0	1000
+
+Input state: |1>, X, random rotation on bit 1
+Syndromes:
+00000000	14
+00000001	68
+11000000	3
+11000001	915
+Output:
+0	1000
+
+Input state: |1>, X, random rotation on bit 2
+Syndromes:
+00000000	122
+00000010	793
+11000000	84
+11000010	1
+Output:
+0	1000
+
+Input state: |1>, X, random rotation on bit 3
+Syndromes:
+00000000	136
+00001100	288
+01000000	77
+01001100	499
+Output:
+0	1000
+
+Input state: |1>, X, random rotation on bit 4
+Syndromes:
+00000000	178
+00000100	182
+01000000	596
+01000100	44
+Output:
+0	1000
+
+Input state: |1>, X, random rotation on bit 5
+Syndromes:
+00000000	311
+00001000	472
+01000000	217
+Output:
+0	1000
+
+Input state: |1>, X, random rotation on bit 6
+Syndromes:
+00000000	750
+00110000	147
+10000000	57
+10110000	46
+Output:
+0	1000
+
+Input state: |1>, X, random rotation on bit 7
+Syndromes:
+00000000	252
+00010000	349
+10000000	309
+10010000	90
+Output:
+0	1000
+
+Input state: |1>, X, random rotation on bit 8
+Syndromes:
+00000000	619
+00100000	18
+10000000	291
+10100000	72
+Output:
+0	1000
+
+Input state: |1>, Z, no error
+Syndromes:
+00000000	1000
+Output:
+1	1000
+
+Input state: |1>, Z, flip bit 0
+Syndromes:
+00000011	1000
+Output:
+1	1000
+
+Input state: |1>, Z, flip bit 1
+Syndromes:
+00000001	1000
+Output:
+1	1000
+
+Input state: |1>, Z, flip bit 2
+Syndromes:
+00000010	1000
+Output:
+1	1000
+
+Input state: |1>, Z, flip bit 3
+Syndromes:
+00001100	1000
+Output:
+1	1000
+
+Input state: |1>, Z, flip bit 4
+Syndromes:
+00000100	1000
+Output:
+1	1000
+
+Input state: |1>, Z, flip bit 5
+Syndromes:
+00001000	1000
+Output:
+1	1000
+
+Input state: |1>, Z, flip bit 6
+Syndromes:
+00110000	1000
+Output:
+1	1000
+
+Input state: |1>, Z, flip bit 7
+Syndromes:
+00010000	1000
+Output:
+1	1000
+
+Input state: |1>, Z, flip bit 8
+Syndromes:
+00100000	1000
+Output:
+1	1000
+
+Input state: |1>, Z, flip phase 0
+Syndromes:
+11000000	1000
+Output:
+1	1000
+
+Input state: |1>, Z, flip phase 1
+Syndromes:
+11000000	1000
+Output:
+1	1000
+
+Input state: |1>, Z, flip phase 2
+Syndromes:
+11000000	1000
+Output:
+1	1000
+
+Input state: |1>, Z, flip phase 3
+Syndromes:
+01000000	1000
+Output:
+1	1000
+
+Input state: |1>, Z, flip phase 4
+Syndromes:
+01000000	1000
+Output:
+1	1000
+
+Input state: |1>, Z, flip phase 5
+Syndromes:
+01000000	1000
+Output:
+1	1000
+
+Input state: |1>, Z, flip phase 6
+Syndromes:
+10000000	1000
+Output:
+1	1000
+
+Input state: |1>, Z, flip phase 7
+Syndromes:
+10000000	1000
+Output:
+1	1000
+
+Input state: |1>, Z, flip phase 8
+Syndromes:
+10000000	1000
+Output:
+1	1000
+
+Input state: |1>, Z, random rotation on bit 0
+Syndromes:
+00000000	81
+00000011	65
+11000000	15
+11000011	839
+Output:
+1	1000
+
+Input state: |1>, Z, random rotation on bit 1
+Syndromes:
+00000000	12
+00000001	277
+11000000	4
+11000001	707
+Output:
+1	1000
+
+Input state: |1>, Z, random rotation on bit 2
+Syndromes:
+00000000	889
+00000010	7
+11000000	104
+Output:
+1	1000
+
+Input state: |1>, Z, random rotation on bit 3
+Syndromes:
+00000000	90
+00001100	794
+01000000	60
+01001100	56
+Output:
+1	1000
+
+Input state: |1>, Z, random rotation on bit 4
+Syndromes:
+00000000	60
+00000100	9
+01000000	904
+01000100	27
+Output:
+1	1000
+
+Input state: |1>, Z, random rotation on bit 5
+Syndromes:
+00000000	683
+00001000	269
+01000000	3
+01001000	45
+Output:
+1	1000
+
+Input state: |1>, Z, random rotation on bit 6
+Syndromes:
+00000000	206
+00110000	33
+10000000	572
+10110000	189
+Output:
+1	1000
+
+Input state: |1>, Z, random rotation on bit 7
+Syndromes:
+00000000	69
+00010000	40
+10000000	624
+10010000	267
+Output:
+1	1000
+
+Input state: |1>, Z, random rotation on bit 8
+Syndromes:
+00000000	3
+00100000	976
+10000000	7
+10100000	14
+Output:
+1	1000
+
+Input state: |33:66>, I, no error
+Syndromes:
+00000000	1000
+Output:
+0	335
+1	665
+
+Input state: |33:66>, I, flip bit 0
+Syndromes:
+00000011	1000
+Output:
+0	325
+1	675
+
+Input state: |33:66>, I, flip bit 1
+Syndromes:
+00000001	1000
+Output:
+0	334
+1	666
+
+Input state: |33:66>, I, flip bit 2
+Syndromes:
+00000010	1000
+Output:
+0	315
+1	685
+
+Input state: |33:66>, I, flip bit 3
+Syndromes:
+00001100	1000
+Output:
+0	338
+1	662
+
+Input state: |33:66>, I, flip bit 4
+Syndromes:
+00000100	1000
+Output:
+0	343
+1	657
+
+Input state: |33:66>, I, flip bit 5
+Syndromes:
+00001000	1000
+Output:
+0	325
+1	675
+
+Input state: |33:66>, I, flip bit 6
+Syndromes:
+00110000	1000
+Output:
+0	345
+1	655
+
+Input state: |33:66>, I, flip bit 7
+Syndromes:
+00010000	1000
+Output:
+0	345
+1	655
+
+Input state: |33:66>, I, flip bit 8
+Syndromes:
+00100000	1000
+Output:
+0	317
+1	683
+
+Input state: |33:66>, I, flip phase 0
+Syndromes:
+11000000	1000
+Output:
+0	313
+1	687
+
+Input state: |33:66>, I, flip phase 1
+Syndromes:
+11000000	1000
+Output:
+0	334
+1	666
+
+Input state: |33:66>, I, flip phase 2
+Syndromes:
+11000000	1000
+Output:
+0	338
+1	662
+
+Input state: |33:66>, I, flip phase 3
+Syndromes:
+01000000	1000
+Output:
+0	324
+1	676
+
+Input state: |33:66>, I, flip phase 4
+Syndromes:
+01000000	1000
+Output:
+0	313
+1	687
+
+Input state: |33:66>, I, flip phase 5
+Syndromes:
+01000000	1000
+Output:
+0	340
+1	660
+
+Input state: |33:66>, I, flip phase 6
+Syndromes:
+10000000	1000
+Output:
+0	318
+1	682
+
+Input state: |33:66>, I, flip phase 7
+Syndromes:
+10000000	1000
+Output:
+0	312
+1	688
+
+Input state: |33:66>, I, flip phase 8
+Syndromes:
+10000000	1000
+Output:
+0	346
+1	654
+
+Input state: |33:66>, I, random rotation on bit 0
+Syndromes:
+00000000	259
+00000011	119
+11000000	622
+Output:
+0	345
+1	655
+
+Input state: |33:66>, I, random rotation on bit 1
+Syndromes:
+00000000	935
+00000001	8
+11000000	34
+11000001	23
+Output:
+0	346
+1	654
+
+Input state: |33:66>, I, random rotation on bit 2
+Syndromes:
+00000000	24
+00000010	41
+11000000	309
+11000010	626
+Output:
+0	314
+1	686
+
+Input state: |33:66>, I, random rotation on bit 3
+Syndromes:
+00000000	25
+01000000	64
+01001100	911
+Output:
+0	329
+1	671
+
+Input state: |33:66>, I, random rotation on bit 4
+Syndromes:
+00000000	619
+00000100	64
+01000000	91
+01000100	226
+Output:
+0	347
+1	653
+
+Input state: |33:66>, I, random rotation on bit 5
+Syndromes:
+00000000	789
+00001000	74
+01000000	96
+01001000	41
+Output:
+0	332
+1	668
+
+Input state: |33:66>, I, random rotation on bit 6
+Syndromes:
+00000000	50
+00110000	322
+10000000	418
+10110000	210
+Output:
+0	316
+1	684
+
+Input state: |33:66>, I, random rotation on bit 7
+Syndromes:
+00000000	74
+00010000	711
+10000000	213
+10010000	2
+Output:
+0	329
+1	671
+
+Input state: |33:66>, I, random rotation on bit 8
+Syndromes:
+00000000	42
+00100000	46
+10000000	609
+10100000	303
+Output:
+0	340
+1	660
+
+Input state: |33:66>, X, no error
+Syndromes:
+00000000	1000
+Output:
+0	683
+1	317
+
+Input state: |33:66>, X, flip bit 0
+Syndromes:
+00000011	1000
+Output:
+0	674
+1	326
+
+Input state: |33:66>, X, flip bit 1
+Syndromes:
+00000001	1000
+Output:
+0	659
+1	341
+
+Input state: |33:66>, X, flip bit 2
+Syndromes:
+00000010	1000
+Output:
+0	675
+1	325
+
+Input state: |33:66>, X, flip bit 3
+Syndromes:
+00001100	1000
+Output:
+0	640
+1	360
+
+Input state: |33:66>, X, flip bit 4
+Syndromes:
+00000100	1000
+Output:
+0	685
+1	315
+
+Input state: |33:66>, X, flip bit 5
+Syndromes:
+00001000	1000
+Output:
+0	663
+1	337
+
+Input state: |33:66>, X, flip bit 6
+Syndromes:
+00110000	1000
+Output:
+0	650
+1	350
+
+Input state: |33:66>, X, flip bit 7
+Syndromes:
+00010000	1000
+Output:
+0	684
+1	316
+
+Input state: |33:66>, X, flip bit 8
+Syndromes:
+00100000	1000
+Output:
+0	658
+1	342
+
+Input state: |33:66>, X, flip phase 0
+Syndromes:
+11000000	1000
+Output:
+0	679
+1	321
+
+Input state: |33:66>, X, flip phase 1
+Syndromes:
+11000000	1000
+Output:
+0	634
+1	366
+
+Input state: |33:66>, X, flip phase 2
+Syndromes:
+11000000	1000
+Output:
+0	688
+1	312
+
+Input state: |33:66>, X, flip phase 3
+Syndromes:
+01000000	1000
+Output:
+0	660
+1	340
+
+Input state: |33:66>, X, flip phase 4
+Syndromes:
+01000000	1000
+Output:
+0	652
+1	348
+
+Input state: |33:66>, X, flip phase 5
+Syndromes:
+01000000	1000
+Output:
+0	652
+1	348
+
+Input state: |33:66>, X, flip phase 6
+Syndromes:
+10000000	1000
+Output:
+0	644
+1	356
+
+Input state: |33:66>, X, flip phase 7
+Syndromes:
+10000000	1000
+Output:
+0	651
+1	349
+
+Input state: |33:66>, X, flip phase 8
+Syndromes:
+10000000	1000
+Output:
+0	647
+1	353
+
+Input state: |33:66>, X, random rotation on bit 0
+Syndromes:
+00000000	157
+00000011	103
+11000000	386
+11000011	354
+Output:
+0	704
+1	296
+
+Input state: |33:66>, X, random rotation on bit 1
+Syndromes:
+00000000	146
+00000001	222
+11000000	570
+11000001	62
+Output:
+0	685
+1	315
+
+Input state: |33:66>, X, random rotation on bit 2
+Syndromes:
+00000000	262
+00000010	502
+11000000	57
+11000010	179
+Output:
+0	672
+1	328
+
+Input state: |33:66>, X, random rotation on bit 3
+Syndromes:
+00000000	1
+00001100	254
+01000000	556
+01001100	189
+Output:
+0	689
+1	311
+
+Input state: |33:66>, X, random rotation on bit 4
+Syndromes:
+00000000	15
+00000100	143
+01000000	458
+01000100	384
+Output:
+0	667
+1	333
+
+Input state: |33:66>, X, random rotation on bit 5
+Syndromes:
+00000000	415
+00001000	283
+01000000	100
+01001000	202
+Output:
+0	661
+1	339
+
+Input state: |33:66>, X, random rotation on bit 6
+Syndromes:
+00000000	105
+00110000	849
+10000000	32
+10110000	14
+Output:
+0	636
+1	364
+
+Input state: |33:66>, X, random rotation on bit 7
+Syndromes:
+00000000	29
+00010000	43
+10000000	27
+10010000	901
+Output:
+0	678
+1	322
+
+Input state: |33:66>, X, random rotation on bit 8
+Syndromes:
+00000000	374
+00100000	202
+10000000	342
+10100000	82
+Output:
+0	672
+1	328
+
+Input state: |33:66>, Z, no error
+Syndromes:
+00000000	1000
+Output:
+0	316
+1	684
+
+Input state: |33:66>, Z, flip bit 0
+Syndromes:
+00000011	1000
+Output:
+0	347
+1	653
+
+Input state: |33:66>, Z, flip bit 1
+Syndromes:
+00000001	1000
+Output:
+0	346
+1	654
+
+Input state: |33:66>, Z, flip bit 2
+Syndromes:
+00000010	1000
+Output:
+0	324
+1	676
+
+Input state: |33:66>, Z, flip bit 3
+Syndromes:
+00001100	1000
+Output:
+0	356
+1	644
+
+Input state: |33:66>, Z, flip bit 4
+Syndromes:
+00000100	1000
+Output:
+0	336
+1	664
+
+Input state: |33:66>, Z, flip bit 5
+Syndromes:
+00001000	1000
+Output:
+0	349
+1	651
+
+Input state: |33:66>, Z, flip bit 6
+Syndromes:
+00110000	1000
+Output:
+0	346
+1	654
+
+Input state: |33:66>, Z, flip bit 7
+Syndromes:
+00010000	1000
+Output:
+0	305
+1	695
+
+Input state: |33:66>, Z, flip bit 8
+Syndromes:
+00100000	1000
+Output:
+0	318
+1	682
+
+Input state: |33:66>, Z, flip phase 0
+Syndromes:
+11000000	1000
+Output:
+0	339
+1	661
+
+Input state: |33:66>, Z, flip phase 1
+Syndromes:
+11000000	1000
+Output:
+0	310
+1	690
+
+Input state: |33:66>, Z, flip phase 2
+Syndromes:
+11000000	1000
+Output:
+0	325
+1	675
+
+Input state: |33:66>, Z, flip phase 3
+Syndromes:
+01000000	1000
+Output:
+0	358
+1	642
+
+Input state: |33:66>, Z, flip phase 4
+Syndromes:
+01000000	1000
+Output:
+0	339
+1	661
+
+Input state: |33:66>, Z, flip phase 5
+Syndromes:
+01000000	1000
+Output:
+0	328
+1	672
+
+Input state: |33:66>, Z, flip phase 6
+Syndromes:
+10000000	1000
+Output:
+0	346
+1	654
+
+Input state: |33:66>, Z, flip phase 7
+Syndromes:
+10000000	1000
+Output:
+0	329
+1	671
+
+Input state: |33:66>, Z, flip phase 8
+Syndromes:
+10000000	1000
+Output:
+0	335
+1	665
+
+Input state: |33:66>, Z, random rotation on bit 0
+Syndromes:
+00000000	295
+00000011	35
+11000000	11
+11000011	659
+Output:
+0	332
+1	668
+
+Input state: |33:66>, Z, random rotation on bit 1
+Syndromes:
+00000000	101
+00000001	16
+11000000	363
+11000001	520
+Output:
+0	324
+1	676
+
+Input state: |33:66>, Z, random rotation on bit 2
+Syndromes:
+00000000	455
+00000010	11
+11000000	480
+11000010	54
+Output:
+0	347
+1	653
+
+Input state: |33:66>, Z, random rotation on bit 3
+Syndromes:
+00000000	123
+00001100	4
+01000000	765
+01001100	108
+Output:
+0	314
+1	686
+
+Input state: |33:66>, Z, random rotation on bit 4
+Syndromes:
+00000000	882
+00000100	115
+01000100	3
+Output:
+0	361
+1	639
+
+Input state: |33:66>, Z, random rotation on bit 5
+Syndromes:
+00000000	421
+00001000	362
+01000000	133
+01001000	84
+Output:
+0	323
+1	677
+
+Input state: |33:66>, Z, random rotation on bit 6
+Syndromes:
+00000000	27
+00110000	26
+10000000	99
+10110000	848
+Output:
+0	323
+1	677
+
+Input state: |33:66>, Z, random rotation on bit 7
+Syndromes:
+00000000	160
+00010000	10
+10000000	48
+10010000	782
+Output:
+0	350
+1	650
+
+Input state: |33:66>, Z, random rotation on bit 8
+Syndromes:
+00000000	473
+00100000	185
+10000000	53
+10100000	289
+Output:
+0	334
+1	666
+
