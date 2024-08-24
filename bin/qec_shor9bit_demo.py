@@ -16,7 +16,8 @@ from qiskit.circuit.library.standard_gates import ZGate
 from qiskit.quantum_info import random_unitary
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
-parser = argparse.ArgumentParser(description="Quantum Error Correction: Shor 9-qubit correction code.")
+parser = argparse.ArgumentParser(description="""Quantum Error Correction: Shor 9-qubit correction code.
+                                 Prepares an input state using RY(θ), encodes using Shor 9-qubit code, applies a unitary operation (I, X, Z), applies optional noise of bit flip, phase flip, or random rotation, corrects errors, and decodes the output.""")
 parser.add_argument("--shots", type=int, default=1000, help="Number of shots")
 parser.add_argument("--filename", type=str, help="Filename for circuit diagram")
 parser.add_argument("--isa-filename", type=str, help="Filename for ISA circuit diagram")
@@ -160,7 +161,9 @@ for bits, val in sorted(syndrome_counts.items()):
 output_counts = result[0].data.output.get_counts()
 print("Output:")
 for bits, val in sorted(output_counts.items()):
-    # if not args.ljc:
-    #     assert bits[0:8] == "00000000"
-    bit = bits[8]
-    print(f"{bits}\t{val}")
+    if args.ljc:
+        print(f"{bits}\t{val}")
+    else:
+        assert bits[0:8] == "00000000"
+        bit = bits[8]
+        print(f"{bit}\t{val}")
