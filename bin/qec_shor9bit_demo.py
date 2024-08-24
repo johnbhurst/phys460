@@ -3,6 +3,8 @@
 # John Hurst (john.b.hurst@gmail.com)
 # 2024-08-24
 
+# Demonstrates the Shor 9-qubit quantum error correction code.
+# Also shows possible error in [LJC] circuit order.
 # See "Quantum Computing and Information: A Scaffolding Approach" by Peter Y Lee, Huiwen Ji, Ran Cheng, Polaris QCI, 2024
 
 import argparse
