@@ -26,6 +26,7 @@ parser.add_argument("--unitaryop", type=str, default="I", help="Unitary operatio
 parser.add_argument("--flipbit", type=int, default=-1, help="Bit to bit flip: -1 (none, default), 0-8")
 parser.add_argument("--phasebit", type=int, default=-1, help="Bit to phase flip: -1 (none, default), 0-8")
 parser.add_argument("--randombit", type=int, default=-1, help="Bit for random rotation: -1 (none, default), 0-8")
+parser.add_argument("--nodeferred", action='store_true', help="Do not use deferred measurement")
 parser.add_argument("--ljc", action='store_true', help="Use LJC order for bit flip correction")
 args = parser.parse_args()
 
@@ -38,7 +39,7 @@ theta = safe_eval(args.theta)
 q = [q1, q2, q3, q4, q5, q6, q7, q8, q9] = QuantumRegister(9, name='q')
 a = [a1, a2, a3, a4, a5, a6, a7, a8] = QuantumRegister(8, name='a')
 o = ClassicalRegister(9, name='output')
-s = ClassicalRegister(8, name='syndrome')
+s = [s1, s2, s3, s4, s5, s6, s7, s8] = ClassicalRegister(8, name='syndrome')
 circuit = QuantumCircuit(q, a, o, s)
 
 if theta != 0.0:
@@ -88,18 +89,51 @@ circuit.cx(q8, a5)
 circuit.cx(q7, a6)
 circuit.cx(q9, a6)
 circuit.barrier()
-circuit.mcx([a2, a1], q1, ctrl_state=0b11)
-circuit.mcx([a2, a1], q2, ctrl_state=0b10)
-circuit.mcx([a2, a1], q3, ctrl_state=0b01)
-circuit.barrier()
-circuit.mcx([a4, a3], q4, ctrl_state=0b11)
-circuit.mcx([a4, a3], q5, ctrl_state=0b10)
-circuit.mcx([a4, a3], q6, ctrl_state=0b01)
-circuit.barrier()
-circuit.mcx([a6, a5], q7, ctrl_state=0b11)
-circuit.mcx([a6, a5], q8, ctrl_state=0b10)
-circuit.mcx([a6, a5], q9, ctrl_state=0b01)
-circuit.barrier()
+if args.nodeferred:
+    circuit.measure([a1, a2, a3, a4, a5, a6], [s1, s2, s3, s4, s5, s6])
+    with circuit.if_test((s1, 1)):
+        with circuit.if_test((s2, 1)):
+            circuit.x(q1)
+    with circuit.if_test((s1, 1)):
+        with circuit.if_test((s2, 0)):
+            circuit.x(q2)
+    with circuit.if_test((s1, 0)):
+        with circuit.if_test((s2, 1)):
+            circuit.x(q3)
+    circuit.barrier()
+    with circuit.if_test((s3, 1)):
+        with circuit.if_test((s4, 1)):
+            circuit.x(q4)
+    with circuit.if_test((s3, 1)):
+        with circuit.if_test((s4, 0)):
+            circuit.x(q5)
+    with circuit.if_test((s3, 0)):
+        with circuit.if_test((s4, 1)):
+            circuit.x(q6)
+    circuit.barrier()
+    with circuit.if_test((s5, 1)):
+        with circuit.if_test((s6, 1)):
+            circuit.x(q7)
+    with circuit.if_test((s5, 1)):
+        with circuit.if_test((s6, 0)):
+            circuit.x(q8)
+    with circuit.if_test((s5, 0)):
+        with circuit.if_test((s6, 1)):
+            circuit.x(q9)
+    circuit.barrier()
+else:
+    circuit.mcx([a2, a1], q1, ctrl_state=0b11)
+    circuit.mcx([a2, a1], q2, ctrl_state=0b10)
+    circuit.mcx([a2, a1], q3, ctrl_state=0b01)
+    circuit.barrier()
+    circuit.mcx([a4, a3], q4, ctrl_state=0b11)
+    circuit.mcx([a4, a3], q5, ctrl_state=0b10)
+    circuit.mcx([a4, a3], q6, ctrl_state=0b01)
+    circuit.barrier()
+    circuit.mcx([a6, a5], q7, ctrl_state=0b11)
+    circuit.mcx([a6, a5], q8, ctrl_state=0b10)
+    circuit.mcx([a6, a5], q9, ctrl_state=0b01)
+    circuit.barrier()
 # decode bitflips: note this is in a different order from [LJC].
 if not args.ljc:
     circuit.cx(q7, q9)
@@ -117,10 +151,23 @@ circuit.cx(q1, a8)
 circuit.cx(q7, a8)
 circuit.barrier()
 circuit.h([q1, q4, q7])
-circuit.append(ZGate().control(num_ctrl_qubits=2, ctrl_state=0b11), [a8, a7, q1])
-circuit.append(ZGate().control(num_ctrl_qubits=2, ctrl_state=0b10), [a8, a7, q4])
-circuit.append(ZGate().control(num_ctrl_qubits=2, ctrl_state=0b01), [a8, a7, q7])
-circuit.barrier()
+if args.nodeferred:
+    circuit.measure([a7, a8], [s7, s8])
+    with circuit.if_test((s7, 1)):
+        with circuit.if_test((s8, 1)):
+            circuit.z(q1)
+    with circuit.if_test((s7, 1)):
+        with circuit.if_test((s8, 0)):
+            circuit.z(q4)
+    with circuit.if_test((s7, 0)):
+        with circuit.if_test((s8, 1)):
+            circuit.z(q7)
+    circuit.barrier()
+else:
+    circuit.append(ZGate().control(num_ctrl_qubits=2, ctrl_state=0b11), [a8, a7, q1])
+    circuit.append(ZGate().control(num_ctrl_qubits=2, ctrl_state=0b10), [a8, a7, q4])
+    circuit.append(ZGate().control(num_ctrl_qubits=2, ctrl_state=0b01), [a8, a7, q7])
+    circuit.barrier()
 # decode bitflips: [LJC] order.
 if args.ljc:
     circuit.cx(q7, q9)
@@ -136,17 +183,18 @@ circuit.cx(q1, q7)
 circuit.cx(q1, q4)
 circuit.barrier()
 circuit.measure(q, o)
-circuit.measure(a, s)
+if not args.nodeferred:
+    circuit.measure(a, s)
 
 if args.filename:
-    circuit.draw(output="mpl", filename=args.filename, fold=-1, plot_barriers=False)
+    circuit.draw(output="mpl", filename=args.filename, fold=-1, plot_barriers=False, cregbundle=not args.nodeferred)
 
 backend = AerSimulator()
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 circuit = pm.run(circuit)
 
 if args.isa_filename:
-    circuit.draw(output="mpl", filename=args.isa_filename, fold=-1, plot_barriers=False)
+    circuit.draw(output="mpl", filename=args.isa_filename, fold=-1, plot_barriers=False, cregbundle=not args.nodeferred)
 
 sampler = Sampler(backend)
 job = sampler.run([circuit], shots=args.shots)
