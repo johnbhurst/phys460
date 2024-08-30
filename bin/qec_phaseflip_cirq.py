@@ -3,9 +3,9 @@
 # 2024-08-27
 
 import argparse
-import cirq
 import math
 import matplotlib.pyplot as plt
+from cirq import Circuit, CNOT, CCZ, H, LineQubit, measure, ry, Simulator, X, Z
 
 parser = argparse.ArgumentParser(description="Quantum Error Correction: Single bit flip correction.")
 # parser.add_argument("--shots", type=int, default=1000, help="Number of shots")
@@ -22,10 +22,10 @@ def safe_eval(expr):
 
 theta = safe_eval(args.theta)
 
-q1, q2, q3 = cirq.LineQubit.range(3)
+q1, q2, q3 = LineQubit.range(3)
 q = [q1, q2, q3]
-a1, a2 = cirq.LineQubit.range(3, 5)
-circuit = cirq.Circuit()
+a1, a2 = LineQubit.range(3, 5)
+circuit = Circuit()
 
 
 # o = ClassicalRegister(3, name='output')
@@ -34,59 +34,59 @@ circuit = cirq.Circuit()
 
 if theta != 0.0:
     # circuit.ry(theta, q1)
-    circuit.append(cirq.ry(theta)(q1))
+    circuit.append(ry(theta)(q1))
 
 # circuit.cx(q1, q2)
 # circuit.cx(q1, q3)
-circuit.append(cirq.CNOT(q1, q2))
-circuit.append(cirq.CNOT(q1, q3))
-circuit.append([cirq.H(qx) for qx in q])
+circuit.append(CNOT(q1, q2))
+circuit.append(CNOT(q1, q3))
+circuit.append([H(qx) for qx in q])
 if args.unitaryop == 'X':
     # circuit.x(q1)
     # circuit.x(q2)
     # circuit.x(q3)
-    circuit.append([cirq.Z(qx) for qx in q])
+    circuit.append([Z(qx) for qx in q])
 if args.flip != -1:
     # circuit.x(q[args.flip])
-    circuit.append(cirq.Z(q[args.flip]))
+    circuit.append(Z(q[args.flip]))
 # circuit.cx(q1, a1)
 # circuit.cx(q2, a1)
 # circuit.cx(q1, a2)
 # circuit.cx(q3, a2)
-circuit.append([cirq.H(qx) for qx in q])
-circuit.append(cirq.CNOT(q1, a1))
-circuit.append(cirq.CNOT(q2, a1))
-circuit.append(cirq.CNOT(q1, a2))
-circuit.append(cirq.CNOT(q3, a2))
-circuit.append([cirq.H(qx) for qx in q])
+circuit.append([H(qx) for qx in q])
+circuit.append(CNOT(q1, a1))
+circuit.append(CNOT(q2, a1))
+circuit.append(CNOT(q1, a2))
+circuit.append(CNOT(q3, a2))
+circuit.append([H(qx) for qx in q])
 # circuit.mcx([a2, a1], q1, ctrl_state=0b11)
 # circuit.mcx([a2, a1], q2, ctrl_state=0b10)
 # circuit.mcx([a2, a1], q3, ctrl_state=0b01)
-circuit.append(cirq.CCZ(a2, a1, q1))
-circuit.append(cirq.X(a1))
-circuit.append(cirq.CCZ(a2, a1, q2))
-circuit.append(cirq.X(a1))
-circuit.append(cirq.X(a2))
-circuit.append(cirq.CCZ(a2, a1, q3))
-circuit.append(cirq.X(a2))
+circuit.append(CCZ(a2, a1, q1))
+circuit.append(X(a1))
+circuit.append(CCZ(a2, a1, q2))
+circuit.append(X(a1))
+circuit.append(X(a2))
+circuit.append(CCZ(a2, a1, q3))
+circuit.append(X(a2))
 # circuit.cx(q1, q3)
 # circuit.cx(q1, q2)
-circuit.append([cirq.H(qx) for qx in q])
-circuit.append(cirq.CNOT(q1, q3))
-circuit.append(cirq.CNOT(q1, q2))
+circuit.append([H(qx) for qx in q])
+circuit.append(CNOT(q1, q3))
+circuit.append(CNOT(q1, q2))
 # circuit.measure(q, o)
 # circuit.measure(a, s)
 
 print(circuit)
 
-simulator = cirq.Simulator()
+simulator = Simulator()
 result = simulator.simulate(circuit)
 print(result)
 
-circuit.append(cirq.measure(q1, q2, q3, key='result'))
+circuit.append(measure(q1, q2, q3, key='result'))
 # samples = simulator.run(circuit, repetitions=args.shots)
 # binary_labels = [bin(x)[2:].zfill(2) for x in range(4)]
-# cirq.plot_state_histogram(samples, plt.subplot(), xlabel = 'measurement state', ylabel = 'count', tick_label=binary_labels)
+# plot_state_histogram(samples, plt.subplot(), xlabel = 'measurement state', ylabel = 'count', tick_label=binary_labels)
 # if args.filename:
 #     plt.savefig(args.filename)
 # else:
