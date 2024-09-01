@@ -30,8 +30,6 @@ theta = safe_eval(args.theta)
 q1, q2, q3, q4, q5, q6, q7, q8, q9 = cirq.LineQubit.range(9)
 q = [q1, q2, q3, q4, q5, q6, q7, q8, q9]
 a1, a2, a3, a4, a5, a6, a7, a8 = cirq.LineQubit.range(9, 17)
-# o = ClassicalRegister(9, name='output')
-# s = ClassicalRegister(8, name='syndrome')
 circuit = cirq.Circuit()
 
 if theta != 0.0:
