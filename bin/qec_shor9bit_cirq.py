@@ -46,9 +46,9 @@ circuit.append(cirq.CNOT(q4, q6))
 circuit.append(cirq.CNOT(q7, q8))
 circuit.append(cirq.CNOT(q7, q9))
 if args.unitaryop == 'X':
-    circuit.append(cirq.Z(qx) for qx in [q1, a4, a7])
+    circuit.append(cirq.Z(qx) for qx in [q1, q4, q7])
 if args.unitaryop == 'Z':
-    circuit.append(cirq.X(qx) for qx in [q1, q4, q7])
+    circuit.append(cirq.X(qx) for qx in [q1, q2, q3])
 if args.flipbit != -1:
     circuit.append(cirq.X(q[args.flipbit]))
 if args.phasebit != -1:
