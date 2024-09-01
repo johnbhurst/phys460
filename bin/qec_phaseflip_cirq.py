@@ -14,6 +14,7 @@ parser = argparse.ArgumentParser(description="Quantum Error Correction: Single b
 parser.add_argument("--theta", type=str, default="0", help="RY rotation angle (e.g. 'pi/2')")
 parser.add_argument("--unitaryop", type=str, default="I", help="Unitary operation (I, X)")
 parser.add_argument("--flip", type=int, default=-1, help="Bit to flip: -1 (none), 0, 1, 2")
+parser.add_argument("--print", action='store_true', help="Print circuit")
 args = parser.parse_args()
 
 def safe_eval(expr):
@@ -77,7 +78,8 @@ circuit.append(CNOT(q1, q2))
 # circuit.measure(q, o)
 # circuit.measure(a, s)
 
-print(circuit)
+if args.print:
+    print(circuit)
 
 simulator = Simulator()
 result = simulator.simulate(circuit)

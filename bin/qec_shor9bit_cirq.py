@@ -18,6 +18,7 @@ parser.add_argument("--flipbit", type=int, default=-1, help="Bit to bit flip: -1
 parser.add_argument("--phasebit", type=int, default=-1, help="Bit to phase flip: -1 (none, default), 0-8")
 parser.add_argument("--randombit", type=int, default=-1, help="Bit for random rotation: -1 (none, default), 0-8")
 parser.add_argument("--ljc", action='store_true', help="Use LJC order for bit flip correction")
+parser.add_argument("--print", action='store_true', help="Print circuit")
 args = parser.parse_args()
 
 def safe_eval(expr):
@@ -127,7 +128,8 @@ circuit.append(cirq.H(qx) for qx in [q1, q4, q7])
 circuit.append(cirq.CNOT(q1, q7))
 circuit.append(cirq.CNOT(q1, q4))
 
-print(circuit)
+if args.print:
+    print(circuit)
 
 simulator = cirq.Simulator()
 result = simulator.simulate(circuit)
