@@ -50,7 +50,7 @@ circuit.append(X(a1))
 circuit.append(CNOT(q1, q3))
 circuit.append(CNOT(q1, q2))
 
-if args.print
+if args.print:
     print(circuit)
 
 simulator = Simulator()
