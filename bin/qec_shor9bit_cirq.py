@@ -125,15 +125,22 @@ if args.ljc:
 circuit.append(cirq.H(qx) for qx in [q1, q4, q7])
 circuit.append(cirq.CNOT(q1, q7))
 circuit.append(cirq.CNOT(q1, q4))
+circuit.append(cirq.measure(q1, q2, q3, q4, q5, q6, q7, q8, q9, key='result'))
+circuit.append(cirq.measure(a1, a2, a3, a4,  a5, a6, a7, a8, key='syndrome'))
 
 if args.print:
     print(circuit)
 
 simulator = cirq.Simulator()
 result = simulator.simulate(circuit)
-print(result)
+measurements = result.measurements
+def numpy_array_to_bitstring(array):
+    return ''.join(str(bit) for bit in array)[::-1]
 
-circuit.append(cirq.measure(q1, q2, q3, q4, q5, q6, q7, q8, q9, key='result'))
+for key, value in measurements.items():
+    bitstring = numpy_array_to_bitstring(value.flatten())
+    print(f"{key}: {bitstring}")
+
 # samples = simulator.run(circuit, repetitions=args.shots)
 # binary_labels = [bin(x)[2:].zfill(2) for x in range(4)]
 # cirq.plot_state_histogram(samples, plt.subplot(), xlabel = 'measurement state', ylabel = 'count', tick_label=binary_labels)

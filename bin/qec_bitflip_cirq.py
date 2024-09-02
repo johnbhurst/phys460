@@ -49,15 +49,22 @@ circuit.append(CCNOT(a2, a1, q3))
 circuit.append(X(a1))
 circuit.append(CNOT(q1, q3))
 circuit.append(CNOT(q1, q2))
+circuit.append(measure(q1, q2, q3, key='result'))
+circuit.append(measure(a1, a2, key='syndrome'))
 
 if args.print:
     print(circuit)
 
 simulator = Simulator()
 result = simulator.simulate(circuit)
-print(result)
+measurements = result.measurements
+def numpy_array_to_bitstring(array):
+    return ''.join(str(bit) for bit in array)[::-1]
 
-circuit.append(measure(q1, q2, q3, key='result'))
+for key, value in measurements.items():
+    bitstring = numpy_array_to_bitstring(value.flatten())
+    print(f"{key}: {bitstring}")
+
 # samples = simulator.run(circuit, repetitions=args.shots)
 # binary_labels = [bin(x)[2:].zfill(2) for x in range(4)]
 # plot_state_histogram(samples, plt.subplot(), xlabel = 'measurement state', ylabel = 'count', tick_label=binary_labels)
