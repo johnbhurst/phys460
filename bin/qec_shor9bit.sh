@@ -25,22 +25,22 @@ function runsetup() {
     shift
     local ketname=$1
     shift
-    local theta=$1
+    local ry=$1
     shift
     local unitaryop
     for unitaryop in "I" "X" "Z"; do
         # run with no errors
-        run "Input state: ${inputstate}, ${unitaryop}, no error" "${ketname}_${unitaryop}_none.png" --theta=$theta --unitaryop=$unitaryop
+        run "Input state: ${inputstate}, ${unitaryop}, no error" "${ketname}_${unitaryop}_none.png" --ry=$ry --unitaryop=$unitaryop
         # run with each of 9 bit flips
         for B in $(seq 0 8); do
-            run "Input state: ${inputstate}, ${unitaryop}, flip bit ${B}" "${ketname}_${unitaryop}_bit${B}.png" --theta=$theta --unitaryop=$unitaryop --flipbit=$B
+            run "Input state: ${inputstate}, ${unitaryop}, flip bit ${B}" "${ketname}_${unitaryop}_bit${B}.png" --ry=$ry --unitaryop=$unitaryop --flipbit=$B
         done
         # run with each of 9 phase flips
         for B in $(seq 0 8); do
-            run "Input state: ${inputstate}, ${unitaryop}, flip phase ${B}" "${ketname}_${unitaryop}_phase${B}.png" --theta=$theta --unitaryop=$unitaryop --phasebit=$B
+            run "Input state: ${inputstate}, ${unitaryop}, flip phase ${B}" "${ketname}_${unitaryop}_phase${B}.png" --ry=$ry --unitaryop=$unitaryop --phasebit=$B
         done
         for B in $(seq 0 8); do
-            run "Input state: ${inputstate}, ${unitaryop}, random rotation on bit ${B}" "${ketname}_${unitaryop}_random${B}.png" --theta=$theta --unitaryop=$unitaryop --randombit=$B
+            run "Input state: ${inputstate}, ${unitaryop}, random rotation on bit ${B}" "${ketname}_${unitaryop}_random${B}.png" --ry=$ry --unitaryop=$unitaryop --randombit=$B
         done
     done
 }

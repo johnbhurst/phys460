@@ -12,7 +12,7 @@ from qiskit.circuit.library.standard_gates import ZGate
 from qiskit.quantum_info import random_unitary
 
 parser = get_parser('Quantum Error Correction: Shor 9-qubit correction code.')
-parser.add_argument("--theta", type=str, default="0", help="Initialization RY rotation angle (e.g. 'pi', '2*atan(sqrt(2))')")
+parser.add_argument("--ry", type=str, default="0", help="Initialization RY rotation angle (e.g. 'pi', '2*atan(sqrt(2))')")
 parser.add_argument("--unitaryop", type=str, default="I", help="Unitary operation (I, X, Z)")
 parser.add_argument("--flipbit", type=int, default=-1, help="Bit to bit flip: -1 (none, default), 0-8")
 parser.add_argument("--phasebit", type=int, default=-1, help="Bit to phase flip: -1 (none, default), 0-8")
@@ -25,7 +25,7 @@ def safe_eval(expr):
     allowed_names = {"pi": math.pi, "sqrt": math.sqrt, "atan": math.atan}
     return eval(expr, {"__builtins__": None}, allowed_names)
 
-theta = safe_eval(args.theta)
+ry = safe_eval(args.ry)
 
 q = [q1, q2, q3, q4, q5, q6, q7, q8, q9] = QuantumRegister(9, name='q')
 a = [a1, a2, a3, a4, a5, a6, a7, a8] = QuantumRegister(8, name='a')
@@ -33,8 +33,8 @@ o = ClassicalRegister(9, name='output')
 s = ClassicalRegister(8, name='syndrome')
 circuit = QuantumCircuit(q, a, o, s)
 
-if theta != 0.0:
-    circuit.ry(theta, q1)
+if ry != 0.0:
+    circuit.ry(ry, q1)
 # encode phase flip
 circuit.cx(q1, q4)
 circuit.cx(q1, q7)

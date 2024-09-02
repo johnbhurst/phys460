@@ -10,7 +10,7 @@ from phys460 import get_parser, run_circuit
 from qiskit.circuit import  ClassicalRegister, QuantumCircuit, QuantumRegister
 
 parser = get_parser('Quantum Error Correction: Single bit flip correction.')
-parser.add_argument("--theta", type=str, default="0", help="RY rotation angle (e.g. 'pi/2')")
+parser.add_argument("--ry", type=str, default="0", help="Initialization RY rotation angle (e.g. 'pi/2')")
 parser.add_argument("--unitaryop", type=str, default="I", help="Unitary operation (I, X)")
 parser.add_argument("--flip", type=int, default=-1, help="Bit to flip: -1 (none), 0, 1, 2")
 args = parser.parse_args()
@@ -19,15 +19,15 @@ def safe_eval(expr):
     allowed_names = {"pi": math.pi, "sqrt": math.sqrt, "atan": math.atan}
     return eval(expr, {"__builtins__": None}, allowed_names)
 
-theta = safe_eval(args.theta)
+ry = safe_eval(args.ry)
 q = [q1, q2, q3] = QuantumRegister(3, name='q')
 a = [a1, a2] = QuantumRegister(2, name='a')
 o = ClassicalRegister(3, name='output')
 s = ClassicalRegister(2, name='syndrome')
 circuit = QuantumCircuit(q, a, o, s)
 
-if theta != 0.0:
-    circuit.ry(theta, q1)
+if ry != 0.0:
+    circuit.ry(ry, q1)
 circuit.cx(q1, q2)
 circuit.cx(q1, q3)
 if args.unitaryop == 'X':

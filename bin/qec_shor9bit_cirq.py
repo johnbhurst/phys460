@@ -27,7 +27,7 @@ class RandomUnitary(cirq.Gate):
         return "U"
 
 parser = argparse.ArgumentParser(description="Quantum Error Correction: Shor 9-qubit correction code.")
-parser.add_argument("--theta", type=str, default="0", help="RY rotation angle (e.g. 'pi/2')")
+parser.add_argument("--ry", type=str, default="0", help="Initialization RY rotation angle (e.g. 'pi/2')")
 parser.add_argument("--unitaryop", type=str, default="I", help="Unitary operation (I, X)")
 parser.add_argument("--flipbit", type=int, default=-1, help="Bit to bit flip: -1 (none, default), 0-8")
 parser.add_argument("--phasebit", type=int, default=-1, help="Bit to phase flip: -1 (none, default), 0-8")
@@ -40,15 +40,15 @@ def safe_eval(expr):
     allowed_names = {"pi": math.pi, "sqrt": math.sqrt, "atan": math.atan}
     return eval(expr, {"__builtins__": None}, allowed_names)
 
-theta = safe_eval(args.theta)
+ry = safe_eval(args.ry)
 
 q1, q2, q3, q4, q5, q6, q7, q8, q9 = cirq.LineQubit.range(9)
 q = [q1, q2, q3, q4, q5, q6, q7, q8, q9]
 a1, a2, a3, a4, a5, a6, a7, a8 = cirq.LineQubit.range(9, 17)
 circuit = cirq.Circuit()
 
-if theta != 0.0:
-    circuit.append(cirq.ry(theta)(q1))
+if ry != 0.0:
+    circuit.append(cirq.ry(ry)(q1))
 # encode phase flip
 circuit.append(cirq.CNOT(q1, q4))
 circuit.append(cirq.CNOT(q1, q7))
