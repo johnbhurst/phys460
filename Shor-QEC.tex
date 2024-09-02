@@ -20,6 +20,7 @@
 \newcommand{\inita}[1]{\push{a_{#1} \ket{0}}{1em}}
 \begin{figure}[h]
 \centering
+\resizebox{0.5\textwidth}{!}{
 $\begin{array}{c}
 \Qcircuit @C=.5em @R=.8em {
 \lstick{q_1 \ket{x}} & \ctrl{3} & \ctrl{6} & \gate{H} & \qw                  & \ctrl{1} & \ctrl{2} \barrier[0em]{8} & \qw    & \boxlogicalgate & \qw    & \boxnoisechannel    & \qw    & \ctrl{10} & \boxrecovery  & \qw    & \boxdecoding & \rstick{U \ket{x}} \qw \\
@@ -35,12 +36,14 @@ $\begin{array}{c}
                      &          &          &          &                      &          &                           &        &                 &        & \push{s_{1-8}}{1em} &        & \gate{S}  & \cctrl{-2}    &        &              &                        \\
 }
 \end{array}$
+}
 \caption{Nine-Qubit Shor Code (from \cite{lee2024})}
 \label{fig:shor1}
 \end{figure}
 
 \begin{figure}[h]
 \centering
+\resizebox{0.5\textwidth}{!}{
 $\begin{array}{c}
 \Qcircuit @C=.5em @R=.8em {
 \lstick{q_1} \barrier[0em]{12} & \qw    & \qw & \qw       & \ctrl{3} & \qw      & \ctrl{4} & \qw      & \qw          & \gate{X}   & \qw         & \qw         & \gate{H}               & \ctrl{15} & \qw       & \ctrl{16} & \qw      & \gate{H}       & \gate{Z}    & \qw          & \qw \barrier[0em]{12} & \qw    & \qw \\
@@ -62,15 +65,48 @@ $\begin{array}{c}
                                &        &     &           &          &          &          &          &              &            &             &             & \push{a_8\ket{0}}{1em} & \qw       & \qw       & \targ     & \targ    & \meterB{s_8}   & \cctrl{-16} & \cctrlo{-11} & \cctrl{-6}            &        &     \\
 }
 \end{array}$
+}
 \caption{Error Syndrome Measurement and Correction for Shor Code (from \cite{lee2024})}
 \label{fig:shor2}
 \end{figure}
 
-
-
-
-
-
+% TODO: reorder ancillas intertwined with qubits
+% TODO: box around bitflip encoding
+% TODO: box around phaseflip encoding
+% TODO: box for logical gate
+% TODO: box for noise channel
+% TODO: box for phaseflip recovery
+% TODO: box for phaselfip decoding
+% TODO: box for bitflip recovery
+% TODO: box for bitflip decoding
+\begin{figure}[h]
+\centering
+\resizebox{1.0\textwidth}{!}{
+$\begin{array}{c}
+\Qcircuit @C=.5em @R=.8em {
+\lstick{q_1 \ket{x}} & \ctrl{3} & \ctrl{6} & \gate{H} & \ctrl{1} & \ctrl{2} & \ctrl{9} & \qw      & \ctrl{10} & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \targ      & \qw        & \qw        & \qw       & \qw        & \qw        & \qw       & \qw        & \qw        & \ctrl{2} & \ctrl{1} & \gate{H} & \ctrl{15} & \qw       & \ctrl{16} & \qw       & \gate{H} & \control \qw & \qw          & \qw          & \gate{H} & \ctrl{6} & \ctrl{3} & \meterB{\text{output}} \\
+\lstick{q_2 \ket{0}} & \qw      & \qw      & \qw      & \targ    & \qw      & \qw      & \ctrl{8} & \qw       & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw        & \targ      & \qw        & \qw       & \qw        & \qw        & \qw       & \qw        & \qw        & \qw      & \targ    & \qw      & \qw       & \qw       & \qw       & \qw       & \qw      & \qw          & \qw          & \qw          & \qw      & \qw      & \qw      & \meterB{0} \\
+\lstick{q_3 \ket{0}} & \qw      & \qw      & \qw      & \qw      & \targ    & \qw      & \qw      & \qw       & \ctrl{8} & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw        & \qw        & \targ      & \qw       & \qw        & \qw        & \qw       & \qw        & \qw        & \targ    & \qw      & \qw      & \qw       & \qw       & \qw       & \qw       & \qw      & \qw          & \qw          & \qw          & \qw      & \qw      & \qw      & \meterB{0} \\
+\lstick{q_4 \ket{0}} & \targ    & \qw      & \gate{H} & \ctrl{1} & \ctrl{2} & \qw      & \qw      & \qw       & \qw      & \ctrl{8} & \qw      & \ctrl{9} & \qw      & \qw      & \qw      & \qw      & \qw      & \qw        & \qw        & \qw        & \targ     & \qw        & \qw        & \qw       & \qw        & \qw        & \ctrl{2} & \ctrl{1} & \gate{H} & \qw       & \ctrl{12} & \qw       & \qw       & \gate{H} & \qw          & \control \qw & \qw          & \gate{H} & \qw      & \targ    & \meterB{0} \\
+\lstick{q_5 \ket{0}} & \qw      & \qw      & \qw      & \targ    & \qw      & \qw      & \qw      & \qw       & \qw      & \qw      & \ctrl{7} & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw        & \qw        & \qw        & \qw       & \targ      & \qw        & \qw       & \qw        & \qw        & \qw      & \targ    & \qw      & \qw       & \qw       & \qw       & \qw       & \qw      & \qw          & \qw          & \qw          & \qw      & \qw      & \qw      & \meterB{0} \\
+\lstick{q_6 \ket{0}} & \qw      & \qw      & \qw      & \qw      & \targ    & \qw      & \qw      & \qw       & \qw      & \qw      & \qw      & \qw      & \ctrl{7} & \qw      & \qw      & \qw      & \qw      & \qw        & \qw        & \qw        & \qw       & \qw        & \targ      & \qw       & \qw        & \qw        & \targ    & \qw      & \qw      & \qw       & \qw       & \qw       & \qw       & \qw      & \qw          & \qw          & \qw          & \qw      & \qw      & \qw      & \meterB{0} \\
+\lstick{q_7 \ket{0}} & \qw      & \targ    & \gate{H} & \ctrl{1} & \ctrl{2} & \qw      & \qw      & \qw       & \qw      & \qw      & \qw      & \qw      & \qw      & \ctrl{7} & \qw      & \ctrl{8} & \qw      & \qw        & \qw        & \qw        & \qw       & \qw        & \qw        & \targ     & \qw        & \qw        & \ctrl{2} & \ctrl{1} & \gate{H} & \qw       & \qw       & \qw       & \ctrl{10} & \gate{H} & \qw          & \qw          & \control \qw & \gate{H} & \targ    & \qw      & \meterB{0} \\
+\lstick{q_8 \ket{0}} & \qw      & \qw      & \qw      & \targ    & \qw      & \qw      & \qw      & \qw       & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \ctrl{6} & \qw      & \qw      & \qw        & \qw        & \qw        & \qw       & \qw        & \qw        & \qw       & \targ      & \qw        & \qw      & \targ    & \qw      & \qw       & \qw       & \qw       & \qw       & \qw      & \qw          & \qw          & \qw          & \qw      & \qw      & \qw      & \meterB{0} \\
+\lstick{q_9 \ket{0}} & \qw      & \qw      & \qw      & \qw      & \targ    & \qw      & \qw      & \qw       & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \ctrl{6} & \qw        & \qw        & \qw        & \qw       & \qw        & \qw        & \qw       & \qw        & \targ      & \targ    & \qw      & \qw      & \qw       & \qw       & \qw       & \qw       & \qw      & \qw          & \qw          & \qw          & \qw      & \qw      & \qw      & \meterB{0} \\
+\lstick{a_1 \ket{0}} & \qw      & \qw      & \qw      & \qw      & \qw      & \targ    & \targ    & \qw       & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \ctrl{-9}  & \ctrl{-8}  & \ctrlo{-7} & \qw       & \qw        & \qw        & \qw       & \qw        & \qw        & \qw      & \qw      & \qw      & \qw       & \qw       & \qw       & \qw       & \qw      & \qw          & \qw          & \qw          & \qw      & \qw      & \qw      & \meterB{s_1} \\
+\lstick{a_2 \ket{0}} & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \targ     & \targ    & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \ctrl{-10} & \ctrlo{-9} & \ctrl{-8}  & \qw       & \qw        & \qw        & \qw       & \qw        & \qw        & \qw      & \qw      & \qw      & \qw       & \qw       & \qw       & \qw       & \qw      & \qw          & \qw          & \qw          & \qw      & \qw      & \qw      & \meterB{s_2} \\
+\lstick{a_3 \ket{0}} & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw       & \qw      & \targ    & \targ    & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw        & \qw        & \qw        & \ctrl{-8} & \ctrl{-7}  & \ctrlo{-6} & \qw       & \qw        & \qw        & \qw      & \qw      & \qw      & \qw       & \qw       & \qw       & \qw       & \qw      & \qw          & \qw          & \qw          & \qw      & \qw      & \qw      & \meterB{s_3} \\
+\lstick{a_4 \ket{0}} & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw       & \qw      & \qw      & \qw      & \targ    & \targ    & \qw      & \qw      & \qw      & \qw      & \qw        & \qw        & \qw        & \ctrl{-9} & \ctrlo{-8} & \ctrl{-7}  & \qw       & \qw        & \qw        & \qw      & \qw      & \qw      & \qw       & \qw       & \qw       & \qw       & \qw      & \qw          & \qw          & \qw          & \qw      & \qw      & \qw      & \meterB{s_4} \\
+\lstick{a_5 \ket{0}} & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw       & \qw      & \qw      & \qw      & \qw      & \qw      & \targ    & \targ    & \qw      & \qw      & \qw        & \qw        & \qw        & \qw       & \qw        & \qw        & \ctrl{-7} & \ctrl{-6}  & \ctrlo{-5} & \qw      & \qw      & \qw      & \qw       & \qw       & \qw       & \qw       & \qw      & \qw          & \qw          & \qw          & \qw      & \qw      & \qw      & \meterB{s_5} \\
+\lstick{a_6 \ket{0}} & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw       & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \targ    & \targ    & \qw        & \qw        & \qw        & \qw       & \qw        & \qw        & \ctrl{-8} & \ctrlo{-7} & \ctrl{-6}  & \qw      & \qw      & \qw      & \qw       & \qw       & \qw       & \qw       & \qw      & \qw          & \qw          & \qw          & \qw      & \qw      & \qw      & \meterB{s_6} \\
+\lstick{a_7 \ket{0}} & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw       & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw        & \qw        & \qw        & \qw       & \qw        & \qw        & \qw       & \qw        & \qw        & \qw      & \qw      & \qw      & \targ     & \targ     & \qw       & \qw       & \qw      & \ctrl{-15}   & \ctrl{-12}   & \ctrlo{-9}   & \qw      & \qw      & \qw      & \meterB{s_7} \\
+\lstick{a_8 \ket{0}} & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw       & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw      & \qw        & \qw        & \qw        & \qw       & \qw        & \qw        & \qw       & \qw        & \qw        & \qw      & \qw      & \qw      & \qw       & \qw       & \targ     & \targ     & \qw      & \ctrl{-16}   & \ctrlo{-13}  & \ctrl{-10}   & \qw      & \qw      & \qw      & \meterB{s_8} \\
+}
+\end{array}$
+}
+\caption{Corrected Circuit for Shor Code}
+\label{fig:shor_corrected}
+\end{figure}
 
 \printbibliography
 \addcontentsline{toc}{section}{References}
