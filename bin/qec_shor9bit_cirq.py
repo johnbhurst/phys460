@@ -8,8 +8,23 @@
 
 import argparse
 import cirq
+import cirq.testing
 import math
 import matplotlib.pyplot as plt
+
+class RandomUnitary(cirq.Gate):
+    def __init__(self, unitary):
+        super(RandomUnitary, self)
+        self.unitary = unitary
+
+    def _num_qubits_(self):
+        return 1
+
+    def _unitary_(self):
+        return self.unitary
+
+    def _circuit_diagram_info_(self, args):
+        return "U"
 
 parser = argparse.ArgumentParser(description="Quantum Error Correction: Shor 9-qubit correction code.")
 parser.add_argument("--theta", type=str, default="0", help="RY rotation angle (e.g. 'pi/2')")
@@ -53,7 +68,10 @@ if args.flipbit != -1:
     circuit.append(cirq.X(q[args.flipbit]))
 if args.phasebit != -1:
     circuit.append(cirq.Z(q[args.phasebit]))
-# if args.randombit != -1:
+if args.randombit != -1:
+    unitary = cirq.testing.random_unitary(2)
+    circuit.append(RandomUnitary(unitary).on(q[args.randombit]))
+
     # TODO: random unitary with cirq
     # random_rotation = random_unitary(2)
     # circuit.append(random_rotation, [q[args.randombit]])
