@@ -6,6 +6,7 @@
 # See "Quantum Computing and Information: A Scaffolding Approach" by Peter Y Lee, Huiwen Ji, Ran Cheng, Polaris QCI, 2024
 
 import math
+import numpy
 from phys460 import get_parser, run_circuit
 from qiskit.circuit import  ClassicalRegister, QuantumCircuit, QuantumRegister
 from qiskit.circuit.library.standard_gates import ZGate
@@ -15,7 +16,11 @@ parser = get_parser('Quantum Error Correction: Shor 9-qubit correction code.')
 parser.add_argument("--ry", type=str, default="0", help="Initialization RY rotation angle (e.g. 'pi', '2*atan(sqrt(2))')")
 parser.add_argument("--unitaryop", type=str, default="I", help="Unitary operation (I, X, Z)")
 parser.add_argument("--xbit", type=int, default=-1, help="Bit to apply X (bit flip noise) on: -1 (none, default), 0-8")
+parser.add_argument("--ybit", type=int, default=-1, help="Bit to apply Y (bit flip noise) on: -1 (none, default), 0-8")
 parser.add_argument("--zbit", type=int, default=-1, help="Bit to apply Z (phase flip noise) on: -1 (none, default), 0-8")
+parser.add_argument("--xzbit", type=int, default=-1, help="Bit to apply superposition 1/√2(X+Z) (mixed noise) on: -1 (none, default), 0-8")
+parser.add_argument("--xybit", type=int, default=-1, help="Bit to apply superposition 1/√2(X+Y) (mixed noise) on: -1 (none, default), 0-8")
+parser.add_argument("--yzbit", type=int, default=-1, help="Bit to apply superposition 1/√2(Y+Z) (mixed noise) on: -1 (none, default), 0-8")
 parser.add_argument("--randombit", type=int, default=-1, help="Bit to apply random rotation (noise) on: -1 (none, default), 0-8")
 parser.add_argument("--ljc", action='store_true', help="Use LJC order for bit flip correction")
 
@@ -58,8 +63,19 @@ if args.unitaryop == 'Z':
 circuit.barrier()
 if args.xbit != -1:
     circuit.x(q[args.xbit])
+if args.ybit != -1:
+    circuit.y(q[args.ybit])
 if args.zbit != -1:
     circuit.z(q[args.zbit])
+if args.xzbit != -1:
+    U = numpy.array([[1, 1], [1, -1]]) / math.sqrt(2)
+    circuit.unitary(U, [q[args.xzbit]])
+if args.xybit != -1:
+    U = numpy.array([[0, 1-1j], [1+1j, 0]]) / math.sqrt(2)
+    circuit.unitary(U, [q[args.xybit]])
+if args.yzbit != -1:
+    U = numpy.array([[1, -1j], [1j, -1]]) / math.sqrt(2)
+    circuit.unitary(U, [q[args.yzbit]])
 if args.randombit != -1:
     random_rotation = random_unitary(2)
     circuit.append(random_rotation, [q[args.randombit]])
@@ -132,7 +148,7 @@ circuit.measure(a, s)
 
 result = run_circuit(args, circuit)
 syndrome_counts = result[0].data.syndrome.get_counts()
-if not args.ljc and args.randombit == -1:
+if not args.ljc and args.randombit == -1 and args.xzbit == -1 and args.xybit == -1 and args.yzbit == -1:
     assert len(syndrome_counts) == 1
 print("Syndromes:")
 for bits, val in sorted(syndrome_counts.items()):
