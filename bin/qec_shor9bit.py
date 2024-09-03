@@ -14,9 +14,9 @@ from qiskit.quantum_info import random_unitary
 parser = get_parser('Quantum Error Correction: Shor 9-qubit correction code.')
 parser.add_argument("--ry", type=str, default="0", help="Initialization RY rotation angle (e.g. 'pi', '2*atan(sqrt(2))')")
 parser.add_argument("--unitaryop", type=str, default="I", help="Unitary operation (I, X, Z)")
-parser.add_argument("--flipbit", type=int, default=-1, help="Bit to bit flip: -1 (none, default), 0-8")
-parser.add_argument("--phasebit", type=int, default=-1, help="Bit to phase flip: -1 (none, default), 0-8")
-parser.add_argument("--randombit", type=int, default=-1, help="Bit for random rotation: -1 (none, default), 0-8")
+parser.add_argument("--xbit", type=int, default=-1, help="Bit to apply X (bit flip noise) on: -1 (none, default), 0-8")
+parser.add_argument("--zbit", type=int, default=-1, help="Bit to apply Z (phase flip noise) on: -1 (none, default), 0-8")
+parser.add_argument("--randombit", type=int, default=-1, help="Bit to apply random rotation (noise) on: -1 (none, default), 0-8")
 parser.add_argument("--ljc", action='store_true', help="Use LJC order for bit flip correction")
 
 args = parser.parse_args()
@@ -56,10 +56,10 @@ if args.unitaryop == 'Z':
     circuit.x(q2)
     circuit.x(q3)
 circuit.barrier()
-if args.flipbit != -1:
-    circuit.x(q[args.flipbit])
-if args.phasebit != -1:
-    circuit.z(q[args.phasebit])
+if args.xbit != -1:
+    circuit.x(q[args.xbit])
+if args.zbit != -1:
+    circuit.z(q[args.zbit])
 if args.randombit != -1:
     random_rotation = random_unitary(2)
     circuit.append(random_rotation, [q[args.randombit]])
