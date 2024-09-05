@@ -18,8 +18,8 @@ parser.add_argument("--unitaryop", type=str, default="I", help="Unitary operatio
 parser.add_argument("--xbit", type=int, default=-1, help="Bit to apply X (bit flip noise) on: -1 (none, default), 0-8")
 parser.add_argument("--ybit", type=int, default=-1, help="Bit to apply Y (bit flip noise) on: -1 (none, default), 0-8")
 parser.add_argument("--zbit", type=int, default=-1, help="Bit to apply Z (phase flip noise) on: -1 (none, default), 0-8")
-parser.add_argument("--xzbit", type=int, default=-1, help="Bit to apply superposition 1/√2(X+Z) (mixed noise) on: -1 (none, default), 0-8")
 parser.add_argument("--xybit", type=int, default=-1, help="Bit to apply superposition 1/√2(X+Y) (mixed noise) on: -1 (none, default), 0-8")
+parser.add_argument("--xzbit", type=int, default=-1, help="Bit to apply superposition 1/√2(X+Z) (mixed noise) on: -1 (none, default), 0-8")
 parser.add_argument("--yzbit", type=int, default=-1, help="Bit to apply superposition 1/√2(Y+Z) (mixed noise) on: -1 (none, default), 0-8")
 parser.add_argument("--randombit", type=int, default=-1, help="Bit to apply random rotation (noise) on: -1 (none, default), 0-8")
 parser.add_argument("--ljc", action='store_true', help="Use LJC order for bit flip correction")
@@ -67,12 +67,12 @@ if args.ybit != -1:
     circuit.y(q[args.ybit])
 if args.zbit != -1:
     circuit.z(q[args.zbit])
-if args.xzbit != -1:
-    U = numpy.array([[1, 1], [1, -1]]) / math.sqrt(2)
-    circuit.unitary(U, [q[args.xzbit]])
 if args.xybit != -1:
     U = numpy.array([[0, 1-1j], [1+1j, 0]]) / math.sqrt(2)
     circuit.unitary(U, [q[args.xybit]])
+if args.xzbit != -1:
+    U = numpy.array([[1, 1], [1, -1]]) / math.sqrt(2)
+    circuit.unitary(U, [q[args.xzbit]])
 if args.yzbit != -1:
     U = numpy.array([[1, -1j], [1j, -1]]) / math.sqrt(2)
     circuit.unitary(U, [q[args.yzbit]])
