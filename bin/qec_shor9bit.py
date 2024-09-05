@@ -10,7 +10,7 @@ import numpy
 from phys460 import get_parser, run_circuit
 from qiskit.circuit import  ClassicalRegister, QuantumCircuit, QuantumRegister
 from qiskit.circuit.library.standard_gates import ZGate
-from qiskit.quantum_info import random_unitary
+from qiskit.quantum_info import Pauli, random_unitary
 
 parser = get_parser('Quantum Error Correction: Shor 9-qubit correction code.')
 parser.add_argument("--ry", type=str, default="0", help="Initialization RY rotation angle (e.g. 'pi', '2*atan(sqrt(2))')")
@@ -31,6 +31,12 @@ def safe_eval(expr):
     return eval(expr, {"__builtins__": None}, allowed_names)
 
 ry = safe_eval(args.ry)
+X = Pauli('X').to_matrix()
+Y = Pauli('Y').to_matrix()
+Z = Pauli('Z').to_matrix()
+supXY = (X + Y) / math.sqrt(2)
+supXZ = (X + Z) / math.sqrt(2)
+supYZ = (Y + Z) / math.sqrt(2)
 
 q = [q1, q2, q3, q4, q5, q6, q7, q8, q9] = QuantumRegister(9, name='q')
 a = [a1, a2, a3, a4, a5, a6, a7, a8] = QuantumRegister(8, name='a')
@@ -68,14 +74,11 @@ if args.ybit != -1:
 if args.zbit != -1:
     circuit.z(q[args.zbit])
 if args.xybit != -1:
-    U = numpy.array([[0, 1-1j], [1+1j, 0]]) / math.sqrt(2)
-    circuit.unitary(U, [q[args.xybit]])
+    circuit.unitary(supXY, [q[args.xybit]])
 if args.xzbit != -1:
-    U = numpy.array([[1, 1], [1, -1]]) / math.sqrt(2)
-    circuit.unitary(U, [q[args.xzbit]])
+    circuit.unitary(supXZ, [q[args.xzbit]])
 if args.yzbit != -1:
-    U = numpy.array([[1, -1j], [1j, -1]]) / math.sqrt(2)
-    circuit.unitary(U, [q[args.yzbit]])
+    circuit.unitary(supYZ, [q[args.yzbit]])
 if args.randombit != -1:
     random_rotation = random_unitary(2)
     circuit.append(random_rotation, [q[args.randombit]])
