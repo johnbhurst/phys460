@@ -9,6 +9,20 @@
 \maketitle
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\question{A2.2}{Prove Lagrange's theorem: if $H$ is a subgroup of a finite group $G$, then the order of $H$ divides the order of $G$.
+}
+
+Let $m=|H|$, so that $H = \{h_1, h_2, \ldots, h_m\}$.
+
+Choose $g_1 \in G \setminus H$, and define $G_1 = \{g_1h_1, g_1h_2, \ldots, g_1h_m\}$.
+Then $|G_1| = m$. Also, $G_1 \cap H = \emptyset$, for if $g_1h_i = h_j$ for some $i$ and $j$, then $h_jh_i^{-1}= g_1 \in H$.
+
+If $G\setminus G_1$ is not empty, choose $g_2 \in G\setminus G_1 \setminus H$ and define $G_2$ again as above.
+
+Continue this process until $G \setminus (G_1 \cup G_2 \cup G_3 \cup \ldots \cup G_k) = H$, and there are no more elements to choose.
+Then $G = G_1 \cup G_2 \cup \ldots \cup G_k \cup H$, and $|G| = |G_1| + |G_2| + \ldots + |G_k| + m = (k+1)m = (k+1)|H|$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \question{A2.13}{Show that every irreducible Abelian matrix group is one-dimensional.
 }
 
