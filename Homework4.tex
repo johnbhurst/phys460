@@ -79,6 +79,93 @@ Also show that there exists a two-dimensional irreducible representation, with t
 Verify that the representations are orthogonal.
 }
 
+The trivial representation is the number 1, which is a valid one-dimensional matrix representation of any group.
+It is a representation because if for $g\in G$, $\chi(g) = 1$, then $g_1g_2 = g_3 \implies \chi(g_1)\chi(g_2) = \chi(g_3) = 1$ is tautological.
+It is irreducible by definition because it is one-dimensional.
+
+The representation 1, 1, 1, -1, -1, -1 is also one-dimensional.
+The permutations 123, 231 and 312 preserve the cyclic ordering. The permutations 213, 132 and 321 reverse the cyclic ordering.
+These correspond to 1 and -1 respectively, and the representation mapping is equivalent to:
+\[
+\chi(g) = \begin{cases}
+1 & \text{if $g$ preserves the cyclic ordering} \\
+-1 & \text{if $g$ reverses the cyclic ordering}.
+\end{cases}
+\]
+
+Now consider the two-dimensional representation given in the question,
+which can be expressed in this way:
+\begin{align*}
+\chi(123)
+& = \begin{pmatrix} 1 & 0 \\  0 & 1 \end{pmatrix}
+&& = \begin{pmatrix} \cos(0) & -\sin(0) \\ \sin(0) & \cos(0) \end{pmatrix}
+&& = \text{R}(0) \\
+\chi(231)
+& = \frac{1}{2} \begin{pmatrix} -1 & -\sqrt{3} \\ \sqrt{3} & -1 \end{pmatrix}
+&& = \begin{pmatrix} \cos(\frac{2\pi}{3}) & -\sin(\frac{2\pi}{3}) \\ \sin(\frac{2\pi}{3}) & \cos(\frac{2\pi}{3}) \end{pmatrix}
+&& = \text{R}(\frac{2\pi}{3}) \\
+\chi(312) & = \frac{1}{2} \begin{pmatrix} -1 & \sqrt{3} \\ -\sqrt{3} & -1 \end{pmatrix}
+&& = \begin{pmatrix} \cos(\frac{4\pi}{3}) & -\sin(\frac{4\pi}{3}) \\ \sin(\frac{4\pi}{3}) & \cos(\frac{4\pi}{3}) \end{pmatrix}
+&& = \text{R}(\frac{4\pi}{3}) \\
+\chi(213) & = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}
+&& = \begin{pmatrix}-1 & 0 \\ 0 & 1\end{pmatrix} \begin{pmatrix} \cos(0) & -\sin(0) \\ \sin(0) & \cos(0) \end{pmatrix}
+&& = \text{M} \cdot \text{R}(0) \\
+\chi(132) & = \frac{1}{2} \begin{pmatrix} 1 & \sqrt{3} \\ \sqrt{3} & -1 \end{pmatrix}
+&& = \begin{pmatrix}-1 & 0 \\ 0 & 1\end{pmatrix} \begin{pmatrix} \cos(\frac{2\pi}{3}) & -\sin(\frac{2\pi}{3}) \\ \sin(\frac{2\pi}{3}) & \cos(\frac{2\pi}{3}) \end{pmatrix}
+&& = \text{M} \cdot \text{R}(\frac{2\pi}{3}) \\
+\chi(321) & = \frac{1}{2} \begin{pmatrix} 1 & -\sqrt{3} \\ -\sqrt{3} & -1 \end{pmatrix}
+&& = \begin{pmatrix}-1 & 0 \\ 0 & 1\end{pmatrix} \begin{pmatrix} \cos(\frac{4\pi}{3}) & -\sin(\frac{4\pi}{3}) \\ \sin(\frac{4\pi}{3}) & \cos(\frac{4\pi}{3}) \end{pmatrix}
+&& = \text{M} \cdot \text{R}(\frac{4\pi}{3}),
+\end{align*}
+where
+\begin{align*}
+\text{R}(\theta) & = \begin{pmatrix} \cos(\theta) & -\sin(\theta) \\ \sin(\theta) & \cos(\theta) \end{pmatrix} && \expl{2D rotation by $\theta$} \\
+\text{M} & = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} && \expl{reflection about the $y$-axis}.
+\end{align*}
+
+Let's see why this mapping is a representation.
+\begin{table}[h!]
+    \centering
+    \begin{footnotesize}
+        \begin{tabular}{c|c|c|c|c|c|c}
+            & $g_1=123$ & $g_2=231$ & $g_3=312$ & $g_4=213$ & $g_5=132$ & $g_6=321$ \\
+            \hline
+            $g_1=123$ & $123=g_1$ & $231=g_2$ & $312=g_3$ & $213=g_4$ & $132=g_5$ & $321=g_6$ \\
+            $g_2=231$ & $231=g_2$ & $312=g_3$ & $123=g_1$ & $132=g_5$ & $321=g_6$ & $213=g_4$ \\
+            $g_3=312$ & $312=g_3$ & $123=g_1$ & $231=g_2$ & $321=g_6$ & $213=g_4$ & $132=g_5$ \\
+            $g_4=213$ & $213=g_4$ & $321=g_6$ & $132=g_5$ & $123=g_1$ & $312=g_3$ & $231=g_2$ \\
+            $g_5=132$ & $132=g_5$ & $213=g_4$ & $321=g_6$ & $231=g_2$ & $123=g_1$ & $312=g_3$ \\
+            $g_6=321$ & $321=g_6$ & $132=g_5$ & $213=g_4$ & $312=g_3$ & $231=g_2$ & $123=g_1$ \\
+        \end{tabular}
+    \end{footnotesize}
+    \caption{Product of each pair of $g_1, \ldots, g_6$.}
+    \label{tab:permutationproducts}
+\end{table}
+
+Table \ref{tab:permutationproducts} shows the product of each pair of permutations.
+\begin{table}[h!]
+    \centering
+\begin{footnotesize}
+    \begin{tabular}{c|c|c|c|c|c|c}
+        & $\text{R}(0)$ & $\text{R}(\frac{2\pi}{3})$ & $\text{R}(\frac{4\pi}{3})$ & $\text{M}\cdot\text{R}(0)$ & $\text{M}\cdot\text{R}(\frac{2\pi}{3})$ & $\text{M}\cdot\text{R}(\frac{4\pi}{3})$ \\
+        \hline
+        $\text{R}(0)$                           & $\text{R}(0)$ & $\text{R}(\frac{2\pi}{3})$ & $\text{R}(\frac{4\pi}{3})$ & $\text{M}\cdot\text{R}(0)$ & $\text{M}\cdot\text{R}(\frac{2\pi}{3})$ & $\text{M}\cdot\text{R}(\frac{4\pi}{3})$ \\
+        $\text{R}(\frac{2\pi}{3})$              & $\text{R}(\frac{2\pi}{3})$ & $\text{R}(\frac{4\pi}{3})$ & $\text{R}(0)$ & $\text{M}\cdot\text{R}(\frac{4\pi}{3})$ & $\text{M}\cdot\text{R}(0)$ & $\text{M}\cdot\text{R}(\frac{2\pi}{3})$ \\
+        $\text{R}(\frac{4\pi}{3})$              & $\text{R}(\frac{4\pi}{3})$ & $\text{R}(0)$ & $\text{R}(\frac{2\pi}{3})$ & $\text{M}\cdot\text{R}(\frac{2\pi}{3})$ & $\text{M}\cdot\text{R}(\frac{4\pi}{3})$ & $\text{M}\cdot\text{R}(0)$ \\
+        $\text{M}\cdot\text{R}(0)$              & $\text{M}\cdot\text{R}(0)$              & $\text{M}\cdot\text{R}(\frac{2\pi}{3})$              & $\text{M}\cdot\text{R}(\frac{4\pi}{3})$              & $\text{R}(0)$ & $\text{R}(\frac{2\pi}{3})$ & $\text{R}(\frac{4\pi}{3})$ \\
+        $\text{M}\cdot\text{R}(\frac{2\pi}{3})$ & $\text{M}\cdot\text{R}(\frac{2\pi}{3})$ & $\text{M}\cdot\text{R}(\frac{4\pi}{3})$ & $\text{M}\cdot\text{R}(0)$ & $\text{R}(\frac{4\pi}{3})$ & $\text{R}(0)$ & $\text{R}(\frac{2\pi}{3})$ \\
+        $\text{M}\cdot\text{R}(\frac{4\pi}{3})$ & $\text{M}\cdot\text{R}(\frac{4\pi}{3})$ & $\text{M}\cdot\text{R}(0)$ & $\text{M}\cdot\text{R}(\frac{2\pi}{3})$ & $\text{R}(\frac{2\pi}{3})$ & $\text{R}(\frac{4\pi}{3})$ & $\text{R}(0)$ \\
+    \end{tabular}
+\end{footnotesize}
+\caption{Product of each pair of $\chi(g_1), \ldots, \chi(g_6)$.}
+\label{tab:representationproducts}
+\end{table}
+Table \ref{tab:representationproducts} shows the product of each pair of representations $\chi(g_1), \ldots, \chi(g_6)$.
+
+For $\chi$ to be a valid representation, the products should form the same pattern in the two tables, so that $g_igj = g_k \implies \chi(g_i)\chi(g_j) = \chi(g_k)$.
+This is \textbf{not} the case in my tables, so I have gone wrong somewhere, but I am not sure where.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \question{A2.24}{Using the results of exercise A2.16, construct the Fourier transform over $S_3$ and express it as a 6x6 unitary matrix.}
 
