@@ -9,8 +9,7 @@
 \maketitle
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\question{A2.2}{Prove Lagrange's theorem: if $H$ is a subgroup of a finite group $G$, then the order of $H$ divides the order of $G$.
-}
+\question{A2.2}{Prove Lagrange's theorem: if $H$ is a subgroup of a finite group $G$, then the order of $H$ divides the order of $G$.}
 
 Let $m=|H|$, so that $H = \{h_1, h_2, \ldots, h_m\}$.
 
@@ -36,13 +35,52 @@ G & = G_1 \cup G_2 \cup \ldots \cup G_k \cup H \\
 & = (k+1)|H|.
 \end{align*}
 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \question{A2.13}{Show that every irreducible Abelian matrix group is one-dimensional.}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\question{A2.13}{Show that every irreducible Abelian matrix group is one-dimensional.
-}
+\question{A2.7}{Show that every subgroup of a cyclic group is cyclic.}
+
+Let $G$ be a cyclic group with generator $a$, such that $G = \langle a \rangle$.
+
+Let $H$ be a subgroup of $G$.
+
+Let $m=\min\{n: n>0, a^n \in H\}$.
+
+If $m=1$, then $a\in H$ and $H = G$, and is therefore cyclic.
+
+Suppose $m>1$.
+
+Let $b = a^m$.
+
+Consider any $h \in H$. Because $h\in G$, we know that $h=a^k$ for some $k$.
+
+Let
+\begin{align*}
+d & = \floor{k/m} && \expl{Aka ``$k \text{ div } m$''} \\
+r & = k \mod m.
+\end{align*}
+
+Then $k = md + r$.
+
+Therefore
+\begin{align*}
+h & = a^k \\
+& = a^{md+r} \\
+& = (a^m)^d a^r \\
+& = b^d a^r.
+\end{align*}
+
+If $m$ does not divide $k$, then $0<r<m$ and $a^r \in H$.
+But this is a contradiction because $m$ is the smallest positive integer such that $a^m \in H$.
+
+Therefore $m$ divides $k$, and $h = b^d$ for some $d$.
+Therefore $H = \langle b \rangle$, and is cyclic.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \question{A2.16}{$S_3$ is the group of permutations of three elements.
-Support we order these as mapping 123 to 123; 231; 312; 213; 132, and 321, respectively.
+Suppose we order these as mapping 123 to 123; 231; 312; 213; 132, and 321, respectively.
 Show that there exist two one-dimensional irreducible representations of $S_3$, one of which is trivial,
 and the other of which is 1, 1, 1, -1, -1, -1, corresponding in order to the six permutations given earlier.
 Also show that there exists a two-dimensional irreducible representation, with the matrices
@@ -93,37 +131,125 @@ These correspond to 1 and -1 respectively, and the representation mapping is equ
 \end{cases}
 \]
 
-Now consider the two-dimensional representation given in the question,
-which can be expressed in this way:
-\begin{align*}
-\chi(123)
-& = \begin{pmatrix} 1 & 0 \\  0 & 1 \end{pmatrix}
-&& = \begin{pmatrix} \cos(0) & -\sin(0) \\ \sin(0) & \cos(0) \end{pmatrix}
-&& = \text{R}(0) \\
-\chi(231)
-& = \frac{1}{2} \begin{pmatrix} -1 & -\sqrt{3} \\ \sqrt{3} & -1 \end{pmatrix}
-&& = \begin{pmatrix} \cos(\frac{2\pi}{3}) & -\sin(\frac{2\pi}{3}) \\ \sin(\frac{2\pi}{3}) & \cos(\frac{2\pi}{3}) \end{pmatrix}
-&& = \text{R}(\frac{2\pi}{3}) \\
-\chi(312) & = \frac{1}{2} \begin{pmatrix} -1 & \sqrt{3} \\ -\sqrt{3} & -1 \end{pmatrix}
-&& = \begin{pmatrix} \cos(\frac{4\pi}{3}) & -\sin(\frac{4\pi}{3}) \\ \sin(\frac{4\pi}{3}) & \cos(\frac{4\pi}{3}) \end{pmatrix}
-&& = \text{R}(\frac{4\pi}{3}) \\
-\chi(213) & = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}
-&& = \begin{pmatrix}-1 & 0 \\ 0 & 1\end{pmatrix} \begin{pmatrix} \cos(0) & -\sin(0) \\ \sin(0) & \cos(0) \end{pmatrix}
-&& = \text{M} \cdot \text{R}(0) \\
-\chi(132) & = \frac{1}{2} \begin{pmatrix} 1 & \sqrt{3} \\ \sqrt{3} & -1 \end{pmatrix}
-&& = \begin{pmatrix}-1 & 0 \\ 0 & 1\end{pmatrix} \begin{pmatrix} \cos(\frac{2\pi}{3}) & -\sin(\frac{2\pi}{3}) \\ \sin(\frac{2\pi}{3}) & \cos(\frac{2\pi}{3}) \end{pmatrix}
-&& = \text{M} \cdot \text{R}(\frac{2\pi}{3}) \\
-\chi(321) & = \frac{1}{2} \begin{pmatrix} 1 & -\sqrt{3} \\ -\sqrt{3} & -1 \end{pmatrix}
-&& = \begin{pmatrix}-1 & 0 \\ 0 & 1\end{pmatrix} \begin{pmatrix} \cos(\frac{4\pi}{3}) & -\sin(\frac{4\pi}{3}) \\ \sin(\frac{4\pi}{3}) & \cos(\frac{4\pi}{3}) \end{pmatrix}
-&& = \text{M} \cdot \text{R}(\frac{4\pi}{3}),
-\end{align*}
-where
+The group of permutations of three elements can be represented by rotations and reflections on the vertices of an equilateral triangle, as shown in Table \ref{tab:permutations}.
+\begin{table}[h!]
+\centering
+\begin{tabular}{ccc}
+\begin{tikzpicture}
+\node[draw] at (0,2) {123};
+\coordinate (A) at (0,1.1547);
+\coordinate (B) at (-1,-0.5774);
+\coordinate (C) at (1,-0.5774);
+\draw[thick] (A) -- (B) -- (C) -- cycle;
+\node[above] at (A) {3};
+\node[below left] at (B) {2};
+\node[below right] at (C) {1};
+\end{tikzpicture}
+&
+\begin{tikzpicture}
+\node[draw] at (0,2) {231};
+\coordinate (A) at (0,1.1547);
+\coordinate (B) at (-1,-0.5774);
+\coordinate (C) at (1,-0.5774);
+\draw[thick] (A) -- (B) -- (C) -- cycle;
+\node[above] at (A) {1};
+\node[below left] at (B) {3};
+\node[below right] at (C) {2};
+\draw[->,thick] (0.25,-0.2) arc[start angle=0,end angle=120,radius=1/3];
+\end{tikzpicture}
+&
+\begin{tikzpicture}
+\node[draw] at (0,2) {312};
+\coordinate (A) at (0,1.1547);
+\coordinate (B) at (-1,-0.5774);
+\coordinate (C) at (1,-0.5774);
+\draw[thick] (A) -- (B) -- (C) -- cycle;
+\node[above] at (A) {2};
+\node[below left] at (B) {1};
+\node[below right] at (C) {3};
+\draw[->,thick] (0.32,-0.05) arc[start angle=0,end angle=240,radius=1/3];
+\end{tikzpicture}
+\\
+\begin{tikzpicture}
+\node[draw] at (0,2) {213};
+\coordinate (A) at (0,1.1547);
+\coordinate (B) at (-1,-0.5774);
+\coordinate (C) at (1,-0.5774);
+\draw[thick] (A) -- (B) -- (C) -- cycle;
+\node[above] at (A) {3};
+\node[below left] at (B) {1};
+\node[below right] at (C) {2};
+\draw[<->,thick] (0.35,0.3) -- (-0.35,0.3);
+\end{tikzpicture}
+&
+\begin{tikzpicture}
+\node[draw] at (0,2) {132};
+\coordinate (A) at (0,1.1547);
+\coordinate (B) at (-1,-0.5774);
+\coordinate (C) at (1,-0.5774);
+\draw[thick] (A) -- (B) -- (C) -- cycle;
+\node[above] at (A) {2};
+\node[below left] at (B) {3};
+\node[below right] at (C) {1};
+\draw[<->,thick] (0.35,0.25) -- (-0.35,0.25);
+\draw[->,thick] (0.25,-0.3) arc[start angle=0,end angle=120,radius=1/3];
+\end{tikzpicture}
+&
+\begin{tikzpicture}
+\node[draw] at (0,2) {321};
+\coordinate (A) at (0,1.1547);
+\coordinate (B) at (-1,-0.5774);
+\coordinate (C) at (1,-0.5774);
+\draw[thick] (A) -- (B) -- (C) -- cycle;
+\node[above] at (A) {1};
+\node[below left] at (B) {2};
+\node[below right] at (C) {3};
+\draw[<->,thick] (0.35,0.3) -- (-0.35,0.3);
+\draw[->,thick] (0.32,-0.15) arc[start angle=0,end angle=240,radius=1/3];
+\end{tikzpicture}
+\end{tabular}
+\caption{Permutations of three elements.}
+\label{tab:permutations}
+\end{table}
+
+\newpage
+
+Let
 \begin{align*}
 \text{R}(\theta) & = \begin{pmatrix} \cos(\theta) & -\sin(\theta) \\ \sin(\theta) & \cos(\theta) \end{pmatrix} && \expl{2D rotation by $\theta$} \\
 \text{M} & = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} && \expl{reflection about the $y$-axis}.
 \end{align*}
 
-Let's see why this mapping is a representation.
+Then the permutations can be represented as:
+
+\begin{align*}
+\chi(123) & = \text{R}(0)
+&& = \begin{pmatrix} \cos(0) & -\sin(0) \\ \sin(0) & \cos(0) \end{pmatrix}
+&& = \begin{pmatrix} 1 & 0 \\  0 & 1 \end{pmatrix} \\
+\chi(231) & = \text{R}\left(\frac{2\pi}{3}\right)
+&& = \begin{pmatrix} \cos(\frac{2\pi}{3}) & -\sin(\frac{2\pi}{3}) \\ \sin(\frac{2\pi}{3}) & \cos(\frac{2\pi}{3}) \end{pmatrix}
+&& = \frac{1}{2} \begin{pmatrix} -1 & -\sqrt{3} \\ \sqrt{3} & -1 \end{pmatrix} \\
+\chi(312) & = \text{R}\left(\frac{4\pi}{3}\right)
+&& = \begin{pmatrix} \cos(\frac{4\pi}{3}) & -\sin(\frac{4\pi}{3}) \\ \sin(\frac{4\pi}{3}) & \cos(\frac{4\pi}{3}) \end{pmatrix}
+&& = \frac{1}{2} \begin{pmatrix} -1 & \sqrt{3} \\ -\sqrt{3} & -1 \end{pmatrix} \\
+\chi(213) & = \text{R}(0) \cdot \text{M}
+&& = \begin{pmatrix} \cos(0) & -\sin(0) \\ \sin(0) & \cos(0) \end{pmatrix} \begin{pmatrix}-1 & 0 \\ 0 & 1\end{pmatrix}
+&& = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}\\
+\chi(132) & = \text{R}\left(\frac{2\pi}{3}\right) \cdot \text{M}
+&& = \begin{pmatrix} \cos(\frac{2\pi}{3}) & -\sin(\frac{2\pi}{3}) \\ \sin(\frac{2\pi}{3}) & \cos(\frac{2\pi}{3}) \end{pmatrix} \begin{pmatrix}-1 & 0 \\ 0 & 1\end{pmatrix}
+&& = \frac{1}{2} \begin{pmatrix} 1 & -\sqrt{3} \\ -\sqrt{3} & -1 \end{pmatrix} \\
+\chi(321) & = \text{R}\left(\frac{4\pi}{3}\right) \cdot \text{M}
+&& = \begin{pmatrix} \cos(\frac{4\pi}{3}) & -\sin(\frac{4\pi}{3}) \\ \sin(\frac{4\pi}{3}) & \cos(\frac{4\pi}{3}) \end{pmatrix} \begin{pmatrix}-1 & 0 \\ 0 & 1\end{pmatrix}
+&& = \frac{1}{2} \begin{pmatrix} 1 & \sqrt{3} \\ \sqrt{3} & -1 \end{pmatrix}
+\end{align*}
+
+Note: I got the same matrices as in the Nielsen and Chuang exercise, but in a slightly different order.
+I could not get the representation to align when following their order.
+Either I have missed something, or is it possible there is a mistake in the book?
+I checked for errata and there are some listed, but all for much older printings and nothing relating to this exercise.
+
+Let's verify that this mapping is a representation, i.e. that $g_ig_j = g_k \implies \chi(g_i)\chi(g_j) = \chi(g_k)$.
+Table \ref{tab:permutationproducts} shows the product of each pair of permutations.
 \begin{table}[h!]
     \centering
     \begin{footnotesize}
@@ -142,32 +268,39 @@ Let's see why this mapping is a representation.
     \label{tab:permutationproducts}
 \end{table}
 
-Table \ref{tab:permutationproducts} shows the product of each pair of permutations.
+Table \ref{tab:representationproducts} shows the product of each pair of representations $\chi(g_1), \ldots, \chi(g_6)$.
 \begin{table}[h!]
     \centering
 \begin{footnotesize}
     \begin{tabular}{c|c|c|c|c|c|c}
-        & $\text{R}(0)$ & $\text{R}(\frac{2\pi}{3})$ & $\text{R}(\frac{4\pi}{3})$ & $\text{M}\cdot\text{R}(0)$ & $\text{M}\cdot\text{R}(\frac{2\pi}{3})$ & $\text{M}\cdot\text{R}(\frac{4\pi}{3})$ \\
+        & $\text{R}(0)$ & $\text{R}\left(\frac{2\pi}{3}\right)$ & $\text{R}\left(\frac{4\pi}{3}\right)$ & $\text{R}\left(0\right)\cdot\text{M}$ & $\text{R}\left(\frac{2\pi}{3}\right)\cdot\text{M}$ & $\text{R}\left(\frac{4\pi}{3}\right)\cdot\text{M}$ \\
         \hline
-        $\text{R}(0)$                           & $\text{R}(0)$ & $\text{R}(\frac{2\pi}{3})$ & $\text{R}(\frac{4\pi}{3})$ & $\text{M}\cdot\text{R}(0)$ & $\text{M}\cdot\text{R}(\frac{2\pi}{3})$ & $\text{M}\cdot\text{R}(\frac{4\pi}{3})$ \\
-        $\text{R}(\frac{2\pi}{3})$              & $\text{R}(\frac{2\pi}{3})$ & $\text{R}(\frac{4\pi}{3})$ & $\text{R}(0)$ & $\text{M}\cdot\text{R}(\frac{4\pi}{3})$ & $\text{M}\cdot\text{R}(0)$ & $\text{M}\cdot\text{R}(\frac{2\pi}{3})$ \\
-        $\text{R}(\frac{4\pi}{3})$              & $\text{R}(\frac{4\pi}{3})$ & $\text{R}(0)$ & $\text{R}(\frac{2\pi}{3})$ & $\text{M}\cdot\text{R}(\frac{2\pi}{3})$ & $\text{M}\cdot\text{R}(\frac{4\pi}{3})$ & $\text{M}\cdot\text{R}(0)$ \\
-        $\text{M}\cdot\text{R}(0)$              & $\text{M}\cdot\text{R}(0)$              & $\text{M}\cdot\text{R}(\frac{2\pi}{3})$              & $\text{M}\cdot\text{R}(\frac{4\pi}{3})$              & $\text{R}(0)$ & $\text{R}(\frac{2\pi}{3})$ & $\text{R}(\frac{4\pi}{3})$ \\
-        $\text{M}\cdot\text{R}(\frac{2\pi}{3})$ & $\text{M}\cdot\text{R}(\frac{2\pi}{3})$ & $\text{M}\cdot\text{R}(\frac{4\pi}{3})$ & $\text{M}\cdot\text{R}(0)$ & $\text{R}(\frac{4\pi}{3})$ & $\text{R}(0)$ & $\text{R}(\frac{2\pi}{3})$ \\
-        $\text{M}\cdot\text{R}(\frac{4\pi}{3})$ & $\text{M}\cdot\text{R}(\frac{4\pi}{3})$ & $\text{M}\cdot\text{R}(0)$ & $\text{M}\cdot\text{R}(\frac{2\pi}{3})$ & $\text{R}(\frac{2\pi}{3})$ & $\text{R}(\frac{4\pi}{3})$ & $\text{R}(0)$ \\
+        $\text{R}\left(0\right)$                           & $\text{R}\left(0\right)$ & $\text{R}\left(\frac{2\pi}{3}\right)$ & $\text{R}\left(\frac{4\pi}{3}\right)$ & $\text{R}\left(0\right)\cdot\text{M}$ & $\text{R}\left(\frac{2\pi}{3}\right)\cdot\text{M}$ & $\text{R}\left(\frac{4\pi}{3}\right)\cdot\text{M}$ \\
+        $\text{R}\left(\frac{2\pi}{3}\right)$              & $\text{R}\left(\frac{2\pi}{3}\right)$ & $\text{R}\left(\frac{4\pi}{3}\right)$ & $\text{R}\left(0\right)$ & $\text{R}\left(\frac{2\pi}{3}\right)\cdot\text{M}$ & $\text{R}\left(\frac{4\pi}{3}\right)\cdot\text{M}$ & $\text{R}\left(0\right)\cdot\text{M}$ \\
+        $\text{R}\left(\frac{4\pi}{3}\right)$              & $\text{R}\left(\frac{4\pi}{3}\right)$ & $\text{R}\left(0\right)$ & $\text{R}\left(\frac{2\pi}{3}\right)$ & $\text{R}\left(\frac{4\pi}{3}\right)\cdot\text{M}$ & $\text{R}\left(0\right)\cdot\text{M}$ & $\text{R}\left(\frac{2\pi}{3}\right)\cdot\text{M}$ \\
+        $\text{R}\left(0\right)             \cdot\text{M}$ & $\text{R}\left(0\right)\cdot\text{M}$ & $\text{R}\left(\frac{4\pi}{3}\right)\cdot\text{M}$ & $\text{R}\left(\frac{2\pi}{3}\right)\cdot\text{M}$ & $\text{R}(0)$ & $\text{R}\left(\frac{4\pi}{3}\right)$ & $\text{R}\left(\frac{2\pi}{3}\right)$ \\
+        $\text{R}\left(\frac{2\pi}{3}\right)\cdot\text{M}$ & $\text{R}\left(\frac{2\pi}{3}\right)\cdot\text{M}$ & $\text{R}\left(0\right)\cdot\text{M}$ & $\text{R}\left(\frac{4\pi}{3}\right)\cdot\text{M}$ & $\text{R}\left(\frac{2\pi}{3}\right)$ & $\text{R}\left(0\right)$ & $\text{R}\left(\frac{4\pi}{3}\right)$ \\
+        $\text{R}\left(\frac{4\pi}{3}\right)\cdot\text{M}$ & $\text{R}\left(\frac{4\pi}{3}\right)\cdot\text{M}$ & $\text{R}\left(\frac{2\pi}{3}\right)\cdot\text{M}$ & $\text{R}\left(0\right)\cdot\text{M}$ & $\text{R}\left(\frac{4\pi}{3}\right)$ & $\text{R}\left(\frac{2\pi}{3}\right)$ & $\text{R}\left(0\right)$ \\
     \end{tabular}
 \end{footnotesize}
 \caption{Product of each pair of $\chi(g_1), \ldots, \chi(g_6)$.}
 \label{tab:representationproducts}
 \end{table}
-Table \ref{tab:representationproducts} shows the product of each pair of representations $\chi(g_1), \ldots, \chi(g_6)$.
 
-For $\chi$ to be a valid representation, the products should form the same pattern in the two tables, so that $g_igj = g_k \implies \chi(g_i)\chi(g_j) = \chi(g_k)$.
-This is \textbf{not} the case in my tables, so I have gone wrong somewhere, but I am not sure where.
+Each product in Table \ref{tab:permutationproducts} matches the corresponding product in Table \ref{tab:representationproducts}, so the mapping is a representation.
 
+The representation is irreducible because the rotations cannot be put into an equivalent block-diagonal form. (I don't know how to prove this.)
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\question{A2.24}{Using the results of exercise A2.16, construct the Fourier transform over $S_3$ and express it as a 6x6 unitary matrix.}
+To ``verify'' that the representations are orthogonal, it sounds as if the question wants me to plug in values and verify the orthogonality relation:
+\[
+\sum_{g\in G} \left[\rho^p(g)\right]_{ij}^{-1} \left[\rho^q(g)\right]_{kl} = \frac{|G|}{d_p} \delta_{il} \delta_{jk} \delta_{pq},
+\]
+for all relevant $p$, $q$, $i$, $j$, $k$, and $l$.
+
+I could not see an obvious way to do this that was not extremely tedious, so I have programmed it in Mathematica, and included the notebook in the submission.
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \question{A2.24}{Using the results of exercise A2.16, construct the Fourier transform over $S_3$ and express it as a 6x6 unitary matrix.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \question{10.46}{Show that the stabilizer for the three qubit phase flip code is generated by $X_1X_2$ and $X_2X_3$.}
