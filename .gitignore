@@ -11,6 +11,7 @@ __pycache__/
 *.run.xml
 *.synctex.gz
 *.toc
+bin/circuit_images/
 images/qec_bitflip
 images/qec_phaseflip
 images/qec_shor9bit
