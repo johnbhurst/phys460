@@ -138,6 +138,56 @@ E_n = \prod_{k=1}^{2^n-1} E_{n,k}
 \]
 where
 
+\[
+E_{n,k} =
+\sum_{b_0\in\{0,1\}} \sum_{b_1\in\{0,1\}} \ldots \sum_{b_n\in\{0,1\}} U_{b_n\ldots b_1b_0} \otimes \outerproduct{b_n} \otimes \ldots \otimes \outerproduct{b_1} \outerproduct{b_0}
+\]
+and
+\[
+U_{b_n\ldots b_1b_0} = \begin{cases}
+    RY_{\theta_k} & \text{if } b_0b_1\ldots b_n = \text{binary representation of } k \\
+    I & \text{otherwise}
+\end{cases}
+\]
+and
+\[
+\sin(\theta_k) = \frac{1}{k}
+\]
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \begin{yquant}
+            qubit {$q_{\idx} = \ket{b_\idx}$} q[2];
+            qubit {$a = \ket{0}$} a;
+            [name=rot1] box {$R_Y(\theta_1)$} a | q[0] ~ q[1];
+            [name=rot2] box {$R_Y(\theta_2)$} a | q[1] ~ q[0];
+            [name=rot3] box {$R_Y(\theta_3)$} a | q[0,1];
+        \end{yquant}
+        \end{tikzpicture}
+    \caption{Reciprocal rotations for 2 state qubits.}
+    \label{fig:reciprocalrot2}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \begin{yquant}
+            qubit {$q_{\idx} = \ket{b_\idx}$} q[3];
+            qubit {$a = \ket{0}$} a;
+            [name=rot1] box {$R_Y(\theta_1)$} a | q[0] ~ q[1,2];
+            [name=rot2] box {$R_Y(\theta_2)$} a | q[1] ~ q[0,2];
+            [name=rot3] box {$R_Y(\theta_3)$} a | q[0,1] ~ q[2];
+            [name=rot4] box {$R_Y(\theta_4)$} a | q[2] ~ q[0,1];
+            [name=rot5] box {$R_Y(\theta_5)$} a | q[0,2] ~ q[1];
+            [name=rot6] box {$R_Y(\theta_6)$} a | q[1,2] ~ q[0];
+            [name=rot7] box {$R_Y(\theta_7)$} a | q[0,1,2];
+        \end{yquant}
+        \end{tikzpicture}
+    \caption{Reciprocal rotations for 3 state qubits.}
+    \label{fig:reciprocalrot3}
+\end{figure}
+
 \printbibliography
 \addcontentsline{toc}{section}{References}
 
