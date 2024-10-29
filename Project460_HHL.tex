@@ -27,6 +27,43 @@ In this project, I explore how the algorithm can be implemented without using th
 In particular, the ancilla rotation step is implemented without using the solution eigenvalues,
 using quantum gates that are not parameterised by the problem input.
 
+Figure \ref{fig:hhloverview} shows the overall structure of the HHL algorithm.
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \begin{yquant}
+            qubit {$a = \ket{0}$} a;
+            qubit {$q_{0\ldots k} = \ket{0}$} q[1];
+            qubit {$x_{0..\log N} = \ket{b}$} x[1];
+            [name=qpe] box {QPE} (q,x);
+            [name=inv] box {$\frac{1}{x}$} (a,q);
+            [name=iqpe] box {IQPE} (q,x);
+            measure a;
+            output {$\ket{1}$?} a;
+            output {$\ket{\overline{x}}$} x;
+        \end{yquant}
+        \end{tikzpicture}
+    \caption{HHL Overview}
+    \label{fig:hhloverview}
+\end{figure}
+
+There are three sets of qubits:
+\begin{itemize}
+    \item $a$ is the ancilla qubit, which is used in controlled rotations for the inversion step, and indicates whether inversion is successful.
+    \item $q$ is the ``clock'' register, containing $n$ qubits. which are used to implement the quantum phase estimation (QPE) step.
+    \item $x$ is the input/output register. At the beginning, $x$ is prepared with the input state representation of the vector $b$. At the end, if the inversion is successful, $x$ contains the output state representation of estimate of the solution vector $x$.
+\end{itemize}
+
+The steps of the algorithm are:
+\begin{enumerate}
+    \item Prepare the input state $\ket{b}$ in register $x$.
+    \item Apply the QPE step to estimate the eigenvalues of the matrix $A$.
+    \item Apply the inversion step to estimate the reciprocal of the eigenvalues.
+    \item Apply the inverse QPE step to estimate the solution vector $x$.
+    \item Measure the ancilla qubit $a$ to determine if the inversion was successful.
+    \item If the inversion was successful, measure the output register $x$ to obtain the estimate of the solution vector $x$.
+\end{enumerate}
+
 \section{Reciprocal}\label{sec:reciprocal}
 
 The Qiskit \texttt{ExactReciprocal} component \cite{ibm_exact_reciprocal} implements a reciprocal using controlled rotation gates.
@@ -145,14 +182,33 @@ E_{n,k} =
 and
 \[
 U_{b_n\ldots b_1b_0} = \begin{cases}
-    RY_{\theta_k} & \text{if } b_0b_1\ldots b_n = \text{binary representation of } k \\
+    R_Y(\theta_k) & \text{if } b_0b_1\ldots b_n = \text{binary representation of } k \\
     I & \text{otherwise}
 \end{cases}
 \]
 and
 \[
-\sin(\theta_k) = \frac{1}{k}
+\sin\left(\frac{\theta_k}{2}\right) = \frac{1}{k}
 \]
+
+For example, for 2 clock qubits these expand to:
+\begin{footnotesize}
+\begin{align*}
+E_{2,1} &= I \otimes \outerproduct{0} \otimes \outerproduct{0}
+         + R_Y(\pi) \otimes \outerproduct{0} \otimes \outerproduct{1}
+         + I \otimes \outerproduct{1} \otimes \outerproduct{0}
+         + I \otimes \outerproduct{1} \otimes \outerproduct{1} \\
+E_{2,2} &= I \otimes \outerproduct{0} \otimes \outerproduct{0}
+         + I \otimes \outerproduct{0} \otimes \outerproduct{1}
+         + R_Y(\frac{\pi}{3}) \otimes \outerproduct{1} \otimes \outerproduct{0}
+         + I \otimes \outerproduct{1} \otimes \outerproduct{1} \\
+E_{2,3} &= I \otimes \outerproduct{0} \otimes \outerproduct{0}
+            + I \otimes \outerproduct{0} \otimes \outerproduct{1}
+            + I \otimes \outerproduct{1} \otimes \outerproduct{0}
+            + R_Y\left(2\inv{\sin}\left[\frac{1}{3}\right]\right) \otimes \outerproduct{1} \otimes \outerproduct{1} \\
+\end{align*}
+\end{footnotesize}
+The product, $E_2$, is represented in circuit form in Figure \ref{fig:reciprocalrot2}.
 
 \begin{figure}[h]
     \centering
@@ -160,33 +216,33 @@ and
         \begin{yquant}
             qubit {$q_{\idx} = \ket{b_\idx}$} q[2];
             qubit {$a = \ket{0}$} a;
-            [name=rot1] box {$R_Y(\theta_1)$} a | q[0] ~ q[1];
-            [name=rot2] box {$R_Y(\theta_2)$} a | q[1] ~ q[0];
-            [name=rot3] box {$R_Y(\theta_3)$} a | q[0,1];
+            [name=rot1] box {$R_Y(\pi)$} a | q[0] ~ q[1];
+            [name=rot2] box {$R_Y(\frac{\pi}{3})$} a | q[1] ~ q[0];
+            [name=rot3] box {$R_Y\left(2\inv{\sin}\left[\frac{1}{3}\right]\right)$} a | q[0,1];
         \end{yquant}
         \end{tikzpicture}
     \caption{Reciprocal rotations for 2 state qubits.}
     \label{fig:reciprocalrot2}
 \end{figure}
 
-\begin{figure}[h]
-    \centering
-    \begin{tikzpicture}
-        \begin{yquant}
-            qubit {$q_{\idx} = \ket{b_\idx}$} q[3];
-            qubit {$a = \ket{0}$} a;
-            [name=rot1] box {$R_Y(\theta_1)$} a | q[0] ~ q[1,2];
-            [name=rot2] box {$R_Y(\theta_2)$} a | q[1] ~ q[0,2];
-            [name=rot3] box {$R_Y(\theta_3)$} a | q[0,1] ~ q[2];
-            [name=rot4] box {$R_Y(\theta_4)$} a | q[2] ~ q[0,1];
-            [name=rot5] box {$R_Y(\theta_5)$} a | q[0,2] ~ q[1];
-            [name=rot6] box {$R_Y(\theta_6)$} a | q[1,2] ~ q[0];
-            [name=rot7] box {$R_Y(\theta_7)$} a | q[0,1,2];
-        \end{yquant}
-        \end{tikzpicture}
-    \caption{Reciprocal rotations for 3 state qubits.}
-    \label{fig:reciprocalrot3}
-\end{figure}
+% \begin{figure}[h]
+%     \centering
+%     \begin{tikzpicture}
+%         \begin{yquant}
+%             qubit {$q_{\idx} = \ket{b_\idx}$} q[3];
+%             qubit {$a = \ket{0}$} a;
+%             [name=rot1] box {$R_Y(\theta_1)$} a | q[0] ~ q[1,2];
+%             [name=rot2] box {$R_Y(\theta_2)$} a | q[1] ~ q[0,2];
+%             [name=rot3] box {$R_Y(\theta_3)$} a | q[0,1] ~ q[2];
+%             [name=rot4] box {$R_Y(\theta_4)$} a | q[2] ~ q[0,1];
+%             [name=rot5] box {$R_Y(\theta_5)$} a | q[0,2] ~ q[1];
+%             [name=rot6] box {$R_Y(\theta_6)$} a | q[1,2] ~ q[0];
+%             [name=rot7] box {$R_Y(\theta_7)$} a | q[0,1,2];
+%         \end{yquant}
+%         \end{tikzpicture}
+%     \caption{Reciprocal rotations for 3 state qubits.}
+%     \label{fig:reciprocalrot3}
+% \end{figure}
 
 \printbibliography
 \addcontentsline{toc}{section}{References}
